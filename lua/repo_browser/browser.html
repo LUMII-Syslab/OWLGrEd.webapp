@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+<title>lQuery endpoint test calls</title>
+
+<script type="text/javascript">
+  function init() {
+
+    // results are in the array returned_json.objects
+    // each result item {"__mii_rep_id": 2000000254, "prop1":val, "prop2":val}
+
+    // get list of all GraphDiagram's from repository    
+    // query object: {"filter" : "GraphDiagram"}
+    // sample call with jQuery:
+    jQuery.getJSON("/lQuery?${%22filter%22:%22GraphDiagram%22}", function(d){
+      console.log("query:", {"filter" : "GraphDiagram"},
+                  "result", d);
+    })
+
+
+    // get list of Elements's that are in a particular diagram
+    // query object: {"contexts" : [{"context_ids" : [2000000275], "selector":"/element"}]}
+    jQuery.getJSON("/lQuery?${%22contexts%22:[{%22context_ids%22:[2000000275],%22selector%22:%22/element%22}]}", function(d){
+        console.log("query:", {"contexts" : [{"context_ids" : [2000000275], "selector":"/element"}]},
+                    "result:", d);
+      })
+
+
+    // get all diagrams
+    jQuery.getJSON("/diagrams", function(d){
+        jQuery("body").html('/diagrams returns (also see the console log) <br/><pre>'+
+            JSON.stringify(d, null, '    ') + '</pre>');
+
+        console.log("query: /diagrams", "result:", d);
+      })
+  }
+</script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
+
+</head>
+
+<body onload="init()">
+
+Results are in the console!
+
+</body>
+
+</html>

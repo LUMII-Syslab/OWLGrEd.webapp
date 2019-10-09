@@ -1,0 +1,28 @@
+
+About
+-----
+
+Repo Browser is an HTTP server started within the TDA Lua context that serves
+diagram data in JSON format.
+
+To make it serve regular files you must set XAVANTE_WEB variable in server.lua
+file to the path of your web directory:
+    XAVANTE_WEB = "C:\\Users\\kaka\\Desktop\\WORK\\tda-web\\public"
+
+Now all HTTP requests prefixed with "/tda_web/" will be served as files from
+that directory. Example request:
+    http://localhost:8080/tda_web/index.html
+
+See server.lua file for other types of requests that the server supports.
+
+The file
+    TdaFramework/Bin/lua/main.lua
+is used to start the server (i.e., it is executed when user presses the L key).
+Below are the contents of main.lua before it was removed from source control.
+
+
+main.lua
+--------
+
+execute_in_new_thread("repo_browser.server.start")
+print('-----')

@@ -1,0 +1,1050 @@
+return {
+  [2000924534] = {
+    ["class"] = "AA#Field",
+    ["properties"] = {
+      ["pattern"] = "a-zA-Z0-9-_",
+      ["fieldType"] = "CheckBox",
+      ["name"] = "showURIs"
+    },
+    ["links"] = {
+      ["context"] = {
+        [1] = 2000924484
+      },
+      ["selfStyleSetting"] = {
+        [1] = 2000924535
+      },
+      ["choiceItem"] = {
+        [1] = 2000924536,
+        [2] = 2000924537
+      },
+      ["translet"] = {
+        [1] = 2000924538
+      }
+    }
+  },
+  [2000924535] = {
+    ["class"] = "AA#FieldStyleSetting",
+    ["properties"] = {
+      ["isElementStyleSetting"] = "false",
+      ["value"] = "0"
+    },
+    ["links"] = {
+      ["fieldStyleFeature"] = {
+        [1] = 2000911368
+      }
+    }
+  },
+  [2000911357] = "AA#TransletTask[taskName=procFieldEntered]",
+  [2000924536] = {
+    ["class"] = "AA#ChoiceItem",
+    ["properties"] = {
+      ["caption"] = "true"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000928178] = {
+    ["class"] = "AA#View",
+    ["properties"] = {
+      ["name"] = "LinkStyle",
+      ["isDefault"] = "true"
+    },
+    ["links"] = {
+      ["styleSetting"] = {
+        [1] = 2000928771,
+        [2] = 2000930678
+      }
+    }
+  },
+  [2000924537] = {
+    ["class"] = "AA#ChoiceItem",
+    ["properties"] = {
+      ["caption"] = "false"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000924538] = {
+    ["class"] = "AA#Translet",
+    ["properties"] = {
+      ["procedure"] = "OWLCNL_LanguageFields.OWL_CNL_specific.change_showURIs"
+    },
+    ["links"] = {
+      ["task"] = {
+        [1] = 2000911357
+      }
+    }
+  },
+  [2000924539] = {
+    ["class"] = "AA#Field",
+    ["properties"] = {
+      ["pattern"] = "a-zA-Z0-9-_",
+      ["displayPlaceBefore"] = "CNL_English",
+      ["propertyEditorTab"] = "Main",
+      ["fieldType"] = "InputField",
+      ["name"] = "DisplayLabel",
+      ["propertyEditorPlaceBefore"] = "CNL_English"
+    },
+    ["links"] = {
+      ["selfStyleSetting"] = {
+        [1] = 2000924540,
+        [2] = 2000924541,
+        [3] = 2000924542,
+        [4] = 2000924543
+      },
+      ["context"] = {
+        [1] = 2000924480
+      }
+    }
+  },
+  [2000924540] = {
+    ["class"] = "AA#FieldStyleSetting",
+    ["properties"] = {
+      ["isElementStyleSetting"] = "false",
+      ["value"] = "1"
+    },
+    ["links"] = {
+      ["fieldStyleFeature"] = {
+        [1] = 2000911374
+      }
+    }
+  },
+  [2000924541] = {
+    ["class"] = "AA#FieldStyleSetting",
+    ["properties"] = {
+      ["isElementStyleSetting"] = "false",
+      ["value"] = "11"
+    },
+    ["links"] = {
+      ["fieldStyleFeature"] = {
+        [1] = 2000911378
+      }
+    }
+  },
+  [2000924542] = {
+    ["class"] = "AA#FieldStyleSetting",
+    ["properties"] = {
+      ["isElementStyleSetting"] = "false",
+      ["value"] = "1"
+    },
+    ["links"] = {
+      ["fieldStyleFeature"] = {
+        [1] = 2000911370
+      }
+    }
+  },
+  [2000924543] = {
+    ["class"] = "AA#FieldStyleSetting",
+    ["properties"] = {
+      ["isElementStyleSetting"] = "false",
+      ["value"] = "1"
+    },
+    ["links"] = {
+      ["fieldStyleFeature"] = {
+        [1] = 2000911395
+      }
+    }
+  },
+  [2000924480] = "AA#ContextType[id=Class]",
+  [2000924544] = {
+    ["class"] = "AA#Field",
+    ["properties"] = {
+      ["pattern"] = "a-zA-Z0-9-_",
+      ["displayPlaceBefore"] = "CNL_English",
+      ["fieldType"] = "InputField",
+      ["name"] = "DisplayLabel",
+      ["propertyEditorPlaceBefore"] = "CNL_English"
+    },
+    ["links"] = {
+      ["selfStyleSetting"] = {
+        [1] = 2000924545
+      },
+      ["context"] = {
+        [1] = 2000924482
+      }
+    }
+  },
+  [2000924481] = "AA#ContextType[id=Association/Role]",
+  [2000924545] = {
+    ["class"] = "AA#FieldStyleSetting",
+    ["properties"] = {
+      ["isElementStyleSetting"] = "false",
+      ["value"] = "0"
+    },
+    ["links"] = {
+      ["fieldStyleFeature"] = {
+        [1] = 2000911368
+      }
+    }
+  },
+  [2000924482] = "AA#ContextType[id=Class/Attributes]",
+  [2000924546] = {
+    ["class"] = "AA#Field",
+    ["properties"] = {
+      ["pattern"] = "a-zA-Z0-9-_",
+      ["displayPlaceBefore"] = "CNL_English",
+      ["propertyEditorTab"] = "Main",
+      ["fieldType"] = "InputField",
+      ["name"] = "DisplayLabel",
+      ["propertyEditorPlaceBefore"] = "CNL_English"
+    },
+    ["links"] = {
+      ["context"] = {
+        [1] = 2000924483
+      }
+    }
+  },
+  [2000924483] = "AA#ContextType[id=Object]",
+  [2000911368] = "AA#CompartStyleItem[itemName=isVisible]",
+  [2000924484] = "AA#ContextType[id=OWL]",
+  [2000924548] = {
+    ["class"] = "AA#FieldStyleSetting",
+    ["properties"] = {
+      ["isElementStyleSetting"] = "false",
+      ["value"] = "6"
+    },
+    ["links"] = {
+      ["fieldStyleFeature"] = {
+        [1] = 2000911369
+      }
+    }
+  },
+  [2000911370] = "AA#CompartStyleItem[itemName=alignment]",
+  [2000924550] = {
+    ["class"] = "AA#FieldStyleSetting",
+    ["properties"] = {
+      ["isElementStyleSetting"] = "false",
+      ["value"] = "1"
+    },
+    ["links"] = {
+      ["fieldStyleFeature"] = {
+        [1] = 2000911395
+      }
+    }
+  },
+  [2000928771] = {
+    ["class"] = "AA#ViewStyleSetting",
+    ["properties"] = {
+      ["addMirror"] = "true",
+      ["isElementStyleSetting"] = "false",
+      ["value"] = "0",
+      ["path"] = "Direct/",
+      ["elementTypeName"] = "Link",
+      ["target"] = "Property"
+    },
+    ["links"] = {
+      ["fieldStyleFeature"] = {
+        [1] = 2000911368
+      }
+    }
+  },
+  [2000911372] = "AA#CompartStyleItem[itemName=textDirection]",
+  [2000924488] = {
+    ["class"] = "AA#View",
+    ["properties"] = {
+      ["name"] = "ClassStyle",
+      ["isDefault"] = "true"
+    },
+    ["links"] = {
+      ["styleSetting"] = {
+        [1] = 2000924489,
+        [2] = 2000924490,
+        [3] = 2000924491
+      }
+    }
+  },
+  [2000924552] = {
+    ["class"] = "AA#ChoiceItem",
+    ["properties"] = {
+      
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000924489] = {
+    ["class"] = "AA#ViewStyleSetting",
+    ["properties"] = {
+      ["isElementStyleSetting"] = "false",
+      ["value"] = "0",
+      ["elementTypeName"] = "Class",
+      ["target"] = "Name"
+    },
+    ["links"] = {
+      ["fieldStyleFeature"] = {
+        [1] = 2000911374
+      }
+    }
+  },
+  [2000911374] = "AA#CompartStyleItem[itemName=fontStyleBold]",
+  [2000924490] = {
+    ["class"] = "AA#ViewStyleSetting",
+    ["properties"] = {
+      ["isElementStyleSetting"] = "false",
+      ["value"] = "1",
+      ["elementTypeName"] = "Class",
+      ["target"] = "Name"
+    },
+    ["links"] = {
+      ["fieldStyleFeature"] = {
+        [1] = 2000911370
+      }
+    }
+  },
+  [2000924554] = {
+    ["class"] = "AA#ChoiceItem",
+    ["properties"] = {
+      ["caption"] = "Latvian"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000924491] = {
+    ["class"] = "AA#ViewStyleSetting",
+    ["properties"] = {
+      ["isElementStyleSetting"] = "false",
+      ["value"] = "9",
+      ["elementTypeName"] = "Class",
+      ["target"] = "Name"
+    },
+    ["links"] = {
+      ["fieldStyleFeature"] = {
+        [1] = 2000911378
+      }
+    }
+  },
+  [2000924555] = {
+    ["class"] = "AA#Translet",
+    ["properties"] = {
+      ["procedure"] = "OWLCNL_LanguageFields.OWL_CNL_specific.generateNames"
+    },
+    ["links"] = {
+      ["task"] = {
+        [1] = 2000911357
+      }
+    }
+  },
+  [2000924492] = {
+    ["class"] = "AA#Tag",
+    ["properties"] = {
+      ["tagKey"] = "owl_Import_Prefixes",
+      ["tagValue"] = "languageFields:=<http://languageFields.lumii.lv/2012/1.0/languageFields#>"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000924493] = {
+    ["class"] = "AA#Field",
+    ["properties"] = {
+      ["pattern"] = "a-zA-Z0-9-_",
+      ["displayPlaceBefore"] = "Name",
+      ["propertyEditorTab"] = "Direct",
+      ["fieldType"] = "OWLCNL_LanguageFields.languageFields.noun_verb_row",
+      ["name"] = "CNL_NounVerb",
+      ["propertyEditorPlaceBefore"] = "Name"
+    },
+    ["links"] = {
+      ["context"] = {
+        [1] = 2000924481
+      },
+      ["selfStyleSetting"] = {
+        [1] = 2000924494
+      },
+      ["tag"] = {
+        [1] = 2000924495
+      }
+    }
+  },
+  [2000911378] = "AA#CompartStyleItem[itemName=fontSize]",
+  [2000924494] = {
+    ["class"] = "AA#FieldStyleSetting",
+    ["properties"] = {
+      ["isElementStyleSetting"] = "false",
+      ["value"] = "0"
+    },
+    ["links"] = {
+      ["fieldStyleFeature"] = {
+        [1] = 2000911368
+      }
+    }
+  },
+  [2000924495] = {
+    ["class"] = "AA#Tag",
+    ["properties"] = {
+      ["tagKey"] = "owl_Field_axiom",
+      ["tagValue"] = "AnnotationAssertion(languageFields:NounVerb $subject $value)"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000924496] = {
+    ["class"] = "AA#Field",
+    ["properties"] = {
+      ["pattern"] = "a-zA-Z0-9-_",
+      ["displayPlaceBefore"] = "Name",
+      ["propertyEditorTab"] = "Direct",
+      ["fieldType"] = "OWLCNL_LanguageFields.languageFields.english_row_role",
+      ["name"] = "CNL_English",
+      ["propertyEditorPlaceBefore"] = "Name"
+    },
+    ["links"] = {
+      ["context"] = {
+        [1] = 2000924481
+      },
+      ["tag"] = {
+        [1] = 2000924499
+      },
+      ["selfStyleSetting"] = {
+        [1] = 2000924498
+      },
+      ["translet"] = {
+        [1] = 2000924497
+      }
+    }
+  },
+  [2000924497] = {
+    ["class"] = "AA#Translet",
+    ["properties"] = {
+      ["procedure"] = "OWLCNL_LanguageFields.OWL_CNL_specific.set_display_label"
+    },
+    ["links"] = {
+      ["task"] = {
+        [1] = 2000911357
+      }
+    }
+  },
+  [2000924498] = {
+    ["class"] = "AA#FieldStyleSetting",
+    ["properties"] = {
+      ["isElementStyleSetting"] = "false",
+      ["value"] = "0"
+    },
+    ["links"] = {
+      ["fieldStyleFeature"] = {
+        [1] = 2000911368
+      }
+    }
+  },
+  [2000924499] = {
+    ["class"] = "AA#Tag",
+    ["properties"] = {
+      ["tagKey"] = "owl_Field_axiom",
+      ["tagValue"] = "AnnotationAssertion(languageFields:LabelEn $subject $value)"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000924500] = {
+    ["class"] = "AA#Field",
+    ["properties"] = {
+      ["pattern"] = "a-zA-Z0-9-_",
+      ["displayPlaceBefore"] = "Name",
+      ["propertyEditorTab"] = "Direct",
+      ["fieldType"] = "OWLCNL_LanguageFields.languageFields.latvian_row_role",
+      ["name"] = "CNL_Latvian",
+      ["propertyEditorPlaceBefore"] = "Name"
+    },
+    ["links"] = {
+      ["context"] = {
+        [1] = 2000924481
+      },
+      ["tag"] = {
+        [1] = 2000924503
+      },
+      ["selfStyleSetting"] = {
+        [1] = 2000924502
+      },
+      ["translet"] = {
+        [1] = 2000924501
+      }
+    }
+  },
+  [2000924501] = {
+    ["class"] = "AA#Translet",
+    ["properties"] = {
+      ["procedure"] = "OWLCNL_LanguageFields.OWL_CNL_specific.set_display_label"
+    },
+    ["links"] = {
+      ["task"] = {
+        [1] = 2000911357
+      }
+    }
+  },
+  [2000924502] = {
+    ["class"] = "AA#FieldStyleSetting",
+    ["properties"] = {
+      ["isElementStyleSetting"] = "false",
+      ["value"] = "0"
+    },
+    ["links"] = {
+      ["fieldStyleFeature"] = {
+        [1] = 2000911368
+      }
+    }
+  },
+  [2000924503] = {
+    ["class"] = "AA#Tag",
+    ["properties"] = {
+      ["tagKey"] = "owl_Field_axiom",
+      ["tagValue"] = "AnnotationAssertion(languageFields:LabelLv $subject $value)"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000924504] = {
+    ["class"] = "AA#Field",
+    ["properties"] = {
+      ["pattern"] = "a-zA-Z0-9-_",
+      ["displayPlaceBefore"] = "Name",
+      ["propertyEditorTab"] = "Main",
+      ["fieldType"] = "OWLCNL_LanguageFields.languageFields.english_row_class",
+      ["name"] = "CNL_English",
+      ["propertyEditorPlaceBefore"] = "Name"
+    },
+    ["links"] = {
+      ["context"] = {
+        [1] = 2000924480
+      },
+      ["tag"] = {
+        [1] = 2000924507
+      },
+      ["selfStyleSetting"] = {
+        [1] = 2000924506
+      },
+      ["translet"] = {
+        [1] = 2000924505
+      }
+    }
+  },
+  [2000924505] = {
+    ["class"] = "AA#Translet",
+    ["properties"] = {
+      ["procedure"] = "OWLCNL_LanguageFields.OWL_CNL_specific.set_display_label"
+    },
+    ["links"] = {
+      ["task"] = {
+        [1] = 2000911357
+      }
+    }
+  },
+  [2000924506] = {
+    ["class"] = "AA#FieldStyleSetting",
+    ["properties"] = {
+      ["isElementStyleSetting"] = "false",
+      ["value"] = "0"
+    },
+    ["links"] = {
+      ["fieldStyleFeature"] = {
+        [1] = 2000911368
+      }
+    }
+  },
+  [2000924507] = {
+    ["class"] = "AA#Tag",
+    ["properties"] = {
+      ["tagKey"] = "owl_Field_axiom",
+      ["tagValue"] = "AnnotationAssertion(languageFields:LabelEn $subject $value)"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000924508] = {
+    ["class"] = "AA#Field",
+    ["properties"] = {
+      ["pattern"] = "a-zA-Z0-9-_",
+      ["displayPlaceBefore"] = "Name",
+      ["propertyEditorTab"] = "Main",
+      ["fieldType"] = "OWLCNL_LanguageFields.languageFields.latvian_row_class",
+      ["name"] = "CNL_Latvian",
+      ["propertyEditorPlaceBefore"] = "Name"
+    },
+    ["links"] = {
+      ["context"] = {
+        [1] = 2000924480
+      },
+      ["tag"] = {
+        [1] = 2000924511
+      },
+      ["selfStyleSetting"] = {
+        [1] = 2000924510
+      },
+      ["translet"] = {
+        [1] = 2000924509
+      }
+    }
+  },
+  [2000924509] = {
+    ["class"] = "AA#Translet",
+    ["properties"] = {
+      ["procedure"] = "OWLCNL_LanguageFields.OWL_CNL_specific.set_display_label"
+    },
+    ["links"] = {
+      ["task"] = {
+        [1] = 2000911357
+      }
+    }
+  },
+  [2000924510] = {
+    ["class"] = "AA#FieldStyleSetting",
+    ["properties"] = {
+      ["isElementStyleSetting"] = "false",
+      ["value"] = "0"
+    },
+    ["links"] = {
+      ["fieldStyleFeature"] = {
+        [1] = 2000911368
+      }
+    }
+  },
+  [2000911395] = "AA#CompartStyleItem[itemName=compactVisible]",
+  [2000924511] = {
+    ["class"] = "AA#Tag",
+    ["properties"] = {
+      ["tagKey"] = "owl_Field_axiom",
+      ["tagValue"] = "AnnotationAssertion(languageFields:LabelLv $subject $value)"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000924512] = {
+    ["class"] = "AA#Field",
+    ["properties"] = {
+      ["pattern"] = "a-zA-Z0-9-_",
+      ["fieldType"] = "OWLCNL_LanguageFields.languageFields.english_row_attribute",
+      ["name"] = "CNL_English",
+      ["propertyEditorPlaceBefore"] = "Name"
+    },
+    ["links"] = {
+      ["context"] = {
+        [1] = 2000924482
+      },
+      ["tag"] = {
+        [1] = 2000924515
+      },
+      ["selfStyleSetting"] = {
+        [1] = 2000924514
+      },
+      ["translet"] = {
+        [1] = 2000924513
+      }
+    }
+  },
+  [2000924513] = {
+    ["class"] = "AA#Translet",
+    ["properties"] = {
+      ["procedure"] = "OWLCNL_LanguageFields.OWL_CNL_specific.set_attr_display_label"
+    },
+    ["links"] = {
+      ["task"] = {
+        [1] = 2000911357
+      }
+    }
+  },
+  [2000924514] = {
+    ["class"] = "AA#FieldStyleSetting",
+    ["properties"] = {
+      ["isElementStyleSetting"] = "false",
+      ["value"] = "0"
+    },
+    ["links"] = {
+      ["fieldStyleFeature"] = {
+        [1] = 2000911368
+      }
+    }
+  },
+  [2000924515] = {
+    ["class"] = "AA#Tag",
+    ["properties"] = {
+      ["tagKey"] = "owl_Field_axiom",
+      ["tagValue"] = "AnnotationAssertion(languageFields:LabelEn $subject $value)"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000924516] = {
+    ["class"] = "AA#Field",
+    ["properties"] = {
+      ["pattern"] = "a-zA-Z0-9-_",
+      ["fieldType"] = "OWLCNL_LanguageFields.languageFields.latvian_row_attribute",
+      ["name"] = "CNL_Latvian",
+      ["propertyEditorPlaceBefore"] = "Name"
+    },
+    ["links"] = {
+      ["context"] = {
+        [1] = 2000924482
+      },
+      ["tag"] = {
+        [1] = 2000924519
+      },
+      ["selfStyleSetting"] = {
+        [1] = 2000924518
+      },
+      ["translet"] = {
+        [1] = 2000924517
+      }
+    }
+  },
+  [2000924517] = {
+    ["class"] = "AA#Translet",
+    ["properties"] = {
+      ["procedure"] = "OWLCNL_LanguageFields.OWL_CNL_specific.set_attr_display_label"
+    },
+    ["links"] = {
+      ["task"] = {
+        [1] = 2000911357
+      }
+    }
+  },
+  [2000924518] = {
+    ["class"] = "AA#FieldStyleSetting",
+    ["properties"] = {
+      ["isElementStyleSetting"] = "false",
+      ["value"] = "0"
+    },
+    ["links"] = {
+      ["fieldStyleFeature"] = {
+        [1] = 2000911368
+      }
+    }
+  },
+  [2000924519] = {
+    ["class"] = "AA#Tag",
+    ["properties"] = {
+      ["tagKey"] = "owl_Field_axiom",
+      ["tagValue"] = "AnnotationAssertion(languageFields:LabelLv $subject $value)"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000924520] = {
+    ["class"] = "AA#Field",
+    ["properties"] = {
+      ["pattern"] = "a-zA-Z0-9-_",
+      ["displayPlaceBefore"] = "Title",
+      ["propertyEditorTab"] = "Main",
+      ["fieldType"] = "OWLCNL_LanguageFields.languageFields.english_row_individual",
+      ["name"] = "CNL_English",
+      ["propertyEditorPlaceBefore"] = "Name"
+    },
+    ["links"] = {
+      ["context"] = {
+        [1] = 2000924483
+      },
+      ["tag"] = {
+        [1] = 2000924523
+      },
+      ["selfStyleSetting"] = {
+        [1] = 2000924522
+      },
+      ["translet"] = {
+        [1] = 2000924521
+      }
+    }
+  },
+  [2000924521] = {
+    ["class"] = "AA#Translet",
+    ["properties"] = {
+      ["procedure"] = "OWLCNL_LanguageFields.OWL_CNL_specific.set_display_label"
+    },
+    ["links"] = {
+      ["task"] = {
+        [1] = 2000911357
+      }
+    }
+  },
+  [2000924522] = {
+    ["class"] = "AA#FieldStyleSetting",
+    ["properties"] = {
+      ["isElementStyleSetting"] = "false",
+      ["value"] = "0"
+    },
+    ["links"] = {
+      ["fieldStyleFeature"] = {
+        [1] = 2000911368
+      }
+    }
+  },
+  [2000924523] = {
+    ["class"] = "AA#Tag",
+    ["properties"] = {
+      ["tagKey"] = "owl_Field_axiom",
+      ["tagValue"] = "AnnotationAssertion(languageFields:LabelEn $subject $value)"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000924524] = {
+    ["class"] = "AA#Field",
+    ["properties"] = {
+      ["pattern"] = "a-zA-Z0-9-_",
+      ["displayPlaceBefore"] = "Title",
+      ["propertyEditorTab"] = "Main",
+      ["fieldType"] = "OWLCNL_LanguageFields.languageFields.latvian_row_individual",
+      ["name"] = "CNL_Latvian",
+      ["propertyEditorPlaceBefore"] = "Name"
+    },
+    ["links"] = {
+      ["context"] = {
+        [1] = 2000924483
+      },
+      ["tag"] = {
+        [1] = 2000924527
+      },
+      ["selfStyleSetting"] = {
+        [1] = 2000924526
+      },
+      ["translet"] = {
+        [1] = 2000924525
+      }
+    }
+  },
+  [2000924525] = {
+    ["class"] = "AA#Translet",
+    ["properties"] = {
+      ["procedure"] = "OWLCNL_LanguageFields.OWL_CNL_specific.set_display_label"
+    },
+    ["links"] = {
+      ["task"] = {
+        [1] = 2000911357
+      }
+    }
+  },
+  [2000925100] = "AA#ContextType[id=Link/Direct]",
+  [2000924526] = {
+    ["class"] = "AA#FieldStyleSetting",
+    ["properties"] = {
+      ["isElementStyleSetting"] = "false",
+      ["value"] = "0"
+    },
+    ["links"] = {
+      ["fieldStyleFeature"] = {
+        [1] = 2000911368
+      }
+    }
+  },
+  [2000924553] = {
+    ["class"] = "AA#ChoiceItem",
+    ["properties"] = {
+      ["caption"] = "English"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000924527] = {
+    ["class"] = "AA#Tag",
+    ["properties"] = {
+      ["tagKey"] = "owl_Field_axiom",
+      ["tagValue"] = "AnnotationAssertion(languageFields:LabelLv $subject $value)"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000925289] = {
+    ["class"] = "AA#Field",
+    ["properties"] = {
+      ["pattern"] = "a-zA-Z0-9-_",
+      ["displayPlaceBefore"] = "Property",
+      ["propertyEditorTab"] = "Direct",
+      ["fieldType"] = "InputField",
+      ["name"] = "DisplayLabel",
+      ["propertyEditorPlaceBefore"] = "IsNegativeAssertion"
+    },
+    ["links"] = {
+      ["context"] = {
+        [1] = 2000925100
+      }
+    }
+  },
+  [2000924528] = {
+    ["class"] = "AA#Field",
+    ["properties"] = {
+      ["pattern"] = "a-zA-Z0-9-_",
+      ["fieldType"] = "ComboBox",
+      ["name"] = "RenderingLanguage"
+    },
+    ["links"] = {
+      ["context"] = {
+        [1] = 2000924484
+      },
+      ["selfStyleSetting"] = {
+        [1] = 2000924529
+      },
+      ["choiceItem"] = {
+        [1] = 2000924530,
+        [2] = 2000924531,
+        [3] = 2000924532
+      },
+      ["translet"] = {
+        [1] = 2000924533
+      }
+    }
+  },
+  [2000924551] = {
+    ["class"] = "AA#Field",
+    ["properties"] = {
+      ["pattern"] = "a-zA-Z0-9-_",
+      ["fieldType"] = "ComboBox",
+      ["name"] = "URI_Gen_Language"
+    },
+    ["links"] = {
+      ["context"] = {
+        [1] = 2000924484
+      },
+      ["choiceItem"] = {
+        [1] = 2000924552,
+        [2] = 2000924553,
+        [3] = 2000924554
+      },
+      ["translet"] = {
+        [1] = 2000924555
+      }
+    }
+  },
+  [2000924529] = {
+    ["class"] = "AA#FieldStyleSetting",
+    ["properties"] = {
+      ["isElementStyleSetting"] = "false",
+      ["value"] = "0"
+    },
+    ["links"] = {
+      ["fieldStyleFeature"] = {
+        [1] = 2000911368
+      }
+    }
+  },
+  [2000924549] = {
+    ["class"] = "AA#FieldStyleSetting",
+    ["properties"] = {
+      ["isElementStyleSetting"] = "false",
+      ["value"] = "0"
+    },
+    ["links"] = {
+      ["fieldStyleFeature"] = {
+        [1] = 2000911372
+      }
+    }
+  },
+  [2000924530] = {
+    ["class"] = "AA#ChoiceItem",
+    ["properties"] = {
+      
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000911369] = "AA#CompartStyleItem[itemName=adjustment]",
+  [2000924531] = {
+    ["class"] = "AA#ChoiceItem",
+    ["properties"] = {
+      ["caption"] = "English"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000924547] = {
+    ["class"] = "AA#Field",
+    ["properties"] = {
+      ["pattern"] = "a-zA-Z0-9-_",
+      ["displayPlaceBefore"] = "CNL_NounVerb",
+      ["propertyEditorTab"] = "Direct",
+      ["fieldType"] = "InputField",
+      ["name"] = "DisplayLabel",
+      ["propertyEditorPlaceBefore"] = "CNL_NounVerb"
+    },
+    ["links"] = {
+      ["selfStyleSetting"] = {
+        [1] = 2000924548,
+        [2] = 2000924549,
+        [3] = 2000924550
+      },
+      ["context"] = {
+        [1] = 2000924481
+      }
+    }
+  },
+  [2000924532] = {
+    ["class"] = "AA#ChoiceItem",
+    ["properties"] = {
+      ["caption"] = "Latvian"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000924487] = {
+    ["class"] = "AA#Profile",
+    ["properties"] = {
+      ["name"] = "OWLCNL_LanguageFields"
+    },
+    ["links"] = {
+      ["view"] = {
+        [1] = 2000924488,
+        [2] = 2000928178
+      },
+      ["field"] = {
+        [1] = 2000924493,
+        [2] = 2000924496,
+        [3] = 2000924500,
+        [4] = 2000924504,
+        [5] = 2000924508,
+        [6] = 2000924512,
+        [7] = 2000924516,
+        [8] = 2000924520,
+        [9] = 2000924524,
+        [10] = 2000924528,
+        [11] = 2000924534,
+        [12] = 2000924539,
+        [13] = 2000924544,
+        [14] = 2000924546,
+        [15] = 2000924547,
+        [16] = 2000924551,
+        [17] = 2000925289
+      },
+      ["tag"] = {
+        [1] = 2000924492
+      }
+    }
+  },
+  [2000924533] = {
+    ["class"] = "AA#Translet",
+    ["properties"] = {
+      ["procedure"] = "OWLCNL_LanguageFields.OWL_CNL_specific.change_render_by_label"
+    },
+    ["links"] = {
+      ["task"] = {
+        [1] = 2000911357
+      }
+    }
+  },
+  [2000930678] = {
+    ["class"] = "AA#ViewStyleSetting",
+    ["properties"] = {
+      ["isElementStyleSetting"] = "false",
+      ["value"] = "0",
+      ["path"] = "Inverse/",
+      ["elementTypeName"] = "Link",
+      ["target"] = "Property"
+    },
+    ["links"] = {
+      ["fieldStyleFeature"] = {
+        [1] = 2000911368
+      }
+    }
+  }
+}, 2000924487

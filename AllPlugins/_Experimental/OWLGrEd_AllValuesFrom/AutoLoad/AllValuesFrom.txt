@@ -1,0 +1,107 @@
+return {
+  [2000932841] = {
+    ["class"] = "AA#Field",
+    ["properties"] = {
+      ["pattern"] = "+",
+      ["displayPlaceBefore"] = "Name",
+      ["fieldType"] = "CheckBox",
+      ["name"] = "allValuesFrom",
+      ["propertyEditorPlaceBefore"] = "Name"
+    },
+    ["links"] = {
+      ["choiceItem"] = {
+        [1] = 2000932842,
+        [2] = 2000932843
+      },
+      ["context"] = {
+        [1] = 2000929259
+      }
+    }
+  },
+  [2000934349] = {
+    ["class"] = "AA#ChoiceItem",
+    ["properties"] = {
+      ["caption"] = "false"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000932842] = {
+    ["class"] = "AA#ChoiceItem",
+    ["properties"] = {
+      ["caption"] = "true",
+      ["notation"] = "+"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000932843] = {
+    ["class"] = "AA#ChoiceItem",
+    ["properties"] = {
+      ["caption"] = "false"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000929258] = "AA#ContextType[id=Association/Role]",
+  [2000928693] = "AA#TransletTask[taskName=procFieldEntered]",
+  [2000932840] = {
+    ["class"] = "AA#Profile",
+    ["properties"] = {
+      ["name"] = "AllValuesFrom"
+    },
+    ["links"] = {
+      ["field"] = {
+        [1] = 2000932841,
+        [2] = 2000934153
+      }
+    }
+  },
+  [2000934363] = {
+    ["class"] = "AA#Translet",
+    ["properties"] = {
+      ["procedure"] = "OWLGrEd_AllValuesFrom.all_values_from.setPrefixesPlusFromAllFaluesFrom"
+    },
+    ["links"] = {
+      ["task"] = {
+        [1] = 2000928693
+      }
+    }
+  },
+  [2000929259] = "AA#ContextType[id=Class/Attributes]",
+  [2000934153] = {
+    ["class"] = "AA#Field",
+    ["properties"] = {
+      ["pattern"] = "a-zA-Z0-9-_",
+      ["displayPlaceBefore"] = "Name",
+      ["propertyEditorTab"] = "Direct",
+      ["fieldType"] = "CheckBox",
+      ["name"] = "allValuesFrom",
+      ["propertyEditorPlaceBefore"] = "Name"
+    },
+    ["links"] = {
+      ["context"] = {
+        [1] = 2000929258
+      },
+      ["choiceItem"] = {
+        [1] = 2000934348,
+        [2] = 2000934349
+      },
+      ["translet"] = {
+        [1] = 2000934363
+      }
+    }
+  },
+  [2000934348] = {
+    ["class"] = "AA#ChoiceItem",
+    ["properties"] = {
+      ["caption"] = "true"
+    },
+    ["links"] = {
+      
+    }
+  }
+}, 2000932840

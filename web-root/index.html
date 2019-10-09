@@ -1,0 +1,18 @@
+<html>
+<head>
+<script src="webappos.js"></script>
+</head>
+<body>
+
+<h1>This is OWLGrEd</h1>
+<script>
+
+
+var project_id = webappos.js_util.get_query_value("project_id");
+if (project_id)
+  location.href="EnvironmentEngine.html?project_id="+project_id;
+else
+  location.href="EnvironmentEngine.html";
+</script>
+</body>
+</html>

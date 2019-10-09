@@ -1,0 +1,79 @@
+return {
+  [2000957620] = {
+    ["class"] = "AA#Profile",
+    ["properties"] = {
+      ["name"] = "UML_Plus_IsOrdered"
+    },
+    ["links"] = {
+      ["field"] = {
+        [1] = 2000957670
+      }
+    }
+  },
+  [2000929258] = "AA#ContextType[id=Association/Role]",
+  [2000957670] = {
+    ["class"] = "AA#Field",
+    ["properties"] = {
+      ["pattern"] = "a-zA-Z0-9-_",
+      ["propertyEditorTab"] = "Direct",
+      ["fieldType"] = "CheckBox",
+      ["name"] = "isOrdered"
+    },
+    ["links"] = {
+      ["context"] = {
+        [1] = 2000929258
+      },
+      ["selfStyleSetting"] = {
+        [1] = 2000958563
+      },
+      ["choiceItem"] = {
+        [1] = 2000957871,
+        [2] = 2000957872
+      }
+    }
+  },
+  [2000911369] = "AA#CompartStyleItem[itemName=adjustment]",
+  [2000958000] = {
+    ["class"] = "AA#Tag",
+    ["properties"] = {
+      ["tagValue"] = "AnnotationAssertion(owlgred:isOrdered $subject \"true\")",
+      ["tagKey"] = "owl_Field_axiom"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000957871] = {
+    ["class"] = "AA#ChoiceItem",
+    ["properties"] = {
+      ["caption"] = "true",
+      ["notation"] = "{ordered}"
+    },
+    ["links"] = {
+      ["tag"] = {
+        [1] = 2000958000
+      }
+    }
+  },
+  [2000958563] = {
+    ["class"] = "AA#FieldStyleSetting",
+    ["properties"] = {
+      ["isElementStyleSetting"] = "false",
+      ["value"] = "6"
+    },
+    ["links"] = {
+      ["fieldStyleFeature"] = {
+        [1] = 2000911369
+      }
+    }
+  },
+  [2000957872] = {
+    ["class"] = "AA#ChoiceItem",
+    ["properties"] = {
+      ["caption"] = "false"
+    },
+    ["links"] = {
+      
+    }
+  }
+}, 2000957620

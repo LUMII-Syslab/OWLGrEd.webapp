@@ -1,0 +1,103 @@
+return {
+  [2000942137] = {
+    ["class"] = "AA#View",
+    ["properties"] = {
+      ["name"] = "obis_hide_enum_text_form"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000942141] = {
+    ["class"] = "AA#FieldStyleSetting",
+    ["properties"] = {
+      ["isElementStyleSetting"] = "false",
+      ["value"] = "0"
+    },
+    ["links"] = {
+      ["fieldStyleFeature"] = {
+        [1] = 2000911368
+      }
+    }
+  },
+  [2000942134] = {
+    ["class"] = "AA#Profile",
+    ["properties"] = {
+      ["name"] = "DefaultOrder"
+    },
+    ["links"] = {
+      ["view"] = {
+        [1] = 2000942135,
+        [2] = 2000942136,
+        [3] = 2000942137
+      },
+      ["field"] = {
+        [1] = 2000942140
+      },
+      ["tag"] = {
+        [1] = 2000942139
+      }
+    }
+  },
+  [2000942142] = {
+    ["class"] = "AA#Tag",
+    ["properties"] = {
+      ["tagValue"] = "AnnotationAssertion(owlgred:defaultOrder $subject $value)",
+      ["tagKey"] = "owl_Field_axiom"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000942135] = {
+    ["class"] = "AA#View",
+    ["properties"] = {
+      ["name"] = "obis_view",
+      ["isDefault"] = "false"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000942139] = {
+    ["class"] = "AA#Tag",
+    ["properties"] = {
+      ["tagValue"] = "owlgred:=<http://lumii.lv/2011/1.0/owlgred#>",
+      ["tagKey"] = "owl_Import_Prefixes"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000942136] = {
+    ["class"] = "AA#View",
+    ["properties"] = {
+      ["name"] = "obis_text_patterns_invisible"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000942140] = {
+    ["class"] = "AA#Field",
+    ["properties"] = {
+      ["pattern"] = "a-zA-Z0-9-_",
+      ["propertyEditorTab"] = "Main",
+      ["fieldType"] = "InputField",
+      ["name"] = "defaultOrder"
+    },
+    ["links"] = {
+      ["context"] = {
+        [1] = 2000929257
+      },
+      ["selfStyleSetting"] = {
+        [1] = 2000942141
+      },
+      ["tag"] = {
+        [1] = 2000942142
+      }
+    }
+  },
+  [2000911368] = "AA#CompartStyleItem[itemName=isVisible]",
+  [2000929257] = "AA#ContextType[id=Class]"
+}, 2000942134

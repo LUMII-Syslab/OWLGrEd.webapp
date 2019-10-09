@@ -1,0 +1,455 @@
+--rep = require("lua_mii_rep")
+--repo = require("mii_rep_obj")
+require("utilities")
+require("style_test")
+configurator = require("configurator.configurator")
+--local diagram = utilities.current_diagram()
+--diagram:find("/toolbar"):delete()
+--	lQuery.create("Toolbar"):link("graphDiagram", diagram)
+--				:link("toolbarElement", lQuery.create("ToolbarElement", {caption = "XX", picture = "XX2", procedureName = "XX3"}))
+--utilities.execute_cmd("AfterConfigCmd", {graphDiagram = diagram})	
+--diagram:find("/toolbar"):log():find("/toolbarElement"):log("caption")
+print("start main")
+
+--MM
+--	lQuery.model.add_class("GraphDiagramStyle")
+--		lQuery.model.add_property("GraphDiagramStyle", "id")
+--		lQuery.model.add_property("GraphDiagramStyle", "caption")
+--		lQuery.model.add_property("GraphDiagramStyle", "bkgColor")
+--		lQuery.model.add_property("GraphDiagramStyle", "printZoom")
+--		lQuery.model.add_property("GraphDiagramStyle", "screenZoom")
+--		lQuery.model.add_property("GraphDiagramStyle", "layoutMode")
+--		lQuery.model.add_property("GraphDiagramStyle", "layoutAlgorithm")
+--
+--	lQuery.model.add_class("UpdateStyleCmd")
+--	lQuery.model.add_class("ToolbarElementSelectEvent")
+--
+--	lQuery.model.delete_link("EdgeType", "start")
+--	lQuery.model.delete_link("EdgeType", "end")
+--
+--	lQuery.model.add_class("PaletteType")
+--	lQuery.model.add_class("PaletteElementType")
+--		lQuery.model.add_property("PaletteElementType", "id")
+--		lQuery.model.add_property("PaletteElementType", "caption")
+--		lQuery.model.add_property("PaletteElementType", "picture")
+--		lQuery.model.add_property("PaletteElementType", "nr")
+--		lQuery.model.add_property("PaletteElementType", "shouldBeIncluded")
+--	lQuery.model.add_class("ToolbarType")
+--	lQuery.model.add_class("ToolbarElementType")
+--		lQuery.model.add_property("ToolbarElementType", "id")
+--		lQuery.model.add_property("ToolbarElementType", "caption")
+--		lQuery.model.add_property("ToolbarElementType", "picture")
+--		lQuery.model.add_property("ToolbarElementType", "nr")
+--		lQuery.model.add_property("ToolbarElementType", "procedureName")
+--		lQuery.model.add_property("ToolbarElementType", "shouldBeIncluded")
+--	lQuery.model.add_class("Toolbar")
+--	lQuery.model.add_class("ToolbarElement")
+--		lQuery.model.add_property("ToolbarElement", "caption")
+--		lQuery.model.add_property("ToolbarElement", "picture")
+--		lQuery.model.add_property("ToolbarElement", "procedureName")
+--	lQuery.model.add_class("PopUpDiagramType")
+--	lQuery.model.add_class("PopUpElementType")
+--		lQuery.model.add_property("PopUpElementType", "id")
+--		lQuery.model.add_property("PopUpElementType", "caption")
+--		lQuery.model.add_property("PopUpElementType", "nr")
+--		lQuery.model.add_property("PopUpElementType", "procedureName")
+--		lQuery.model.add_property("PopUpElementType", "shouldBeIncluded")
+--	lQuery.model.add_class("ToolbarElement")
+--		lQuery.model.add_property("ToolbarElement", "caption")
+--		lQuery.model.add_property("ToolbarElement", "picture")
+--		lQuery.model.add_property("ToolbarElement", "procedureName")
+--	
+--		lQuery.model.add_property("GraphDiagram", "style")
+--		lQuery.model.add_property("Translet", "procedureName")
+--
+--		lQuery.model.add_property("Extension", "id")
+--		lQuery.model.add_property("Extension", "caption")
+--		lQuery.model.add_property("Extension", "type")
+--	
+--	lQuery.model.add_class("FreeBoxType")
+--	lQuery.model.add_class("FreeLineType")
+--	lQuery.model.add_class("Style")
+--	lQuery.model.add_class("FreeBoxStyle")
+--	lQuery.model.add_class("FreeLineStyle")
+--
+--	lQuery.model.add_link("PresentationElement", "presentationElement", "type", "Type")
+--	lQuery.model.add_composition("PopUpElementType", "popUpElementType", "popUpDiagramType", "PopUpDiagramType")
+--	lQuery.model.add_link("PopUpDiagramType", "rClickCollection", "cType", "GraphDiagramType")
+--	lQuery.model.add_link("PopUpDiagramType", "rClickEmpty", "eType", "GraphDiagramType")
+--	lQuery.model.add_link("ElemType", "elemType", "popUpDiagramType", "PopUpDiagramType")
+--	lQuery.model.add_link("PaletteElementType", "paletteElementType", "elemType", "ElemType")
+--	lQuery.model.add_composition("PaletteElementType", "paletteElementType", "paletteType", "PaletteType")
+--	lQuery.model.add_composition("ToolbarElementType", "toolbarElementType", "toolbarType", "ToolbarType")
+--	lQuery.model.add_link("ToolbarType", "toolbarType", "graphDiagramType", "GraphDiagramType")
+--	lQuery.model.add_link("PaletteType", "paletteType", "graphDiagramType", "GraphDiagramType")
+--	lQuery.model.add_composition("ToolbarElement", "toolbarElement", "toolbar", "Toolbar")
+--	lQuery.model.add_link("GraphDiagramStyle", "graphDiagramStyle", "graphDiagramType", "GraphDiagramType")
+--	lQuery.model.add_link("GraphDiagramStyle", "graphDiagramStyle", "graphDiagram", "GraphDiagram")
+--	--lQuery.model.add_link("Tag", "tag", "choiceItem", "ChoiceItem")
+--	
+--	lQuery.model.add_link("EdgeType", "eEnd", "end", "ElemType")
+--	lQuery.model.add_link("EdgeType", "eStart", "start", "ElemType")
+--
+--	lQuery.model.delete_class("Tool")
+--	lQuery.model.add_link("Style", "style", "item", "D#Item")
+--	lQuery.model.add_link("Extension", "extension", "toolbarElement", "ToolbarElement")
+--
+--	lQuery.model.add_link("Element", "element", "updateStyleCmd", "UpdateStyleCmd")
+--	lQuery.model.add_link("ElemStyle", "elemStyle", "updateStyleCmd", "UpdateStyleCmd")
+--	
+--	lQuery.model.set_super_class("GraphDiagramType", "Type")
+--	lQuery.model.set_super_class("ElemType", "Type")
+--	lQuery.model.set_super_class("CompartType", "Type")
+--	lQuery.model.set_super_class("Type", "Mapping#TypeWithMapping")
+--	lQuery.model.set_super_class("PaletteType", "Type")
+--	lQuery.model.set_super_class("PaletteElementType", "Type")
+--	lQuery.model.set_super_class("ToolbarType", "Type")
+--	lQuery.model.set_super_class("ToolbarElementType", "Type")
+--	lQuery.model.set_super_class("PopUpDiagramType", "Type")
+--	lQuery.model.set_super_class("PopUpElementType", "Type")
+--	lQuery.model.set_super_class("PopUpDiagram", "PresentationElement")
+--	lQuery.model.set_super_class("PopUpElement", "PresentationElement")
+--	lQuery.model.set_super_class("Toolbar", "PresentationElement")
+--	lQuery.model.set_super_class("ToolbarElement", "PresentationElement")
+--	lQuery.model.set_super_class("Palette", "PresentationElement")
+--	lQuery.model.set_super_class("PaletteElement", "PresentationElement")
+--	lQuery.model.set_super_class("FreeBoxType", "ElemType")
+--	lQuery.model.set_super_class("FreeLineType", "ElemType")
+--	lQuery.model.set_super_class("FreeBoxStyle", "NodeStyle")
+--	lQuery.model.set_super_class("FreeLineStyle", "EdgeStyle")
+--	lQuery.model.set_super_class("ElemStyle", "Style")
+--	lQuery.model.set_super_class("CompartStyle", "Style")
+--	lQuery.model.set_super_class("GraphDiagramStyle", "Style")
+--	lQuery.model.set_super_class("Toolbar", "PresentationElement")
+--	lQuery.model.set_super_class("ToolbarElement", "PresentationElement")
+--	lQuery.model.set_super_class("UpdateStyleCmd", "Command")
+--	lQuery.model.set_super_class("ToolType", "Type")
+--
+----end of MM
+--
+--lQuery("Translet"):each(function(translet)
+--	translet:attr({procedureName = translet:attr("action")})
+--end)
+--
+--lQuery("Translet"):each(function(translet)
+--	if translet:attr("action") == "" or translet:attr("action") == nil then
+--		translet:delete()
+--	end
+--end)
+--
+--local compart_type = lQuery("CompartType[id = 'AS#Attributes']")
+--compart_type:find("/compartment"):delete()
+--compart_type:delete()
+--
+--lQuery("PopUpDiagram"):each(function(pop_up_diagram)
+--	if pop_up_diagram:find("/elemType"):is_empty() and
+--	pop_up_diagram:find("/cType"):is_empty() and
+--	pop_up_diagram:find("/eType"):is_empty() then
+--		pop_up_diagram:delete()
+--	end
+--end)
+--
+--lQuery("PopUpDiagram"):each(function(pop_up_diagram)
+--	local pop_up_diagram_type = lQuery.create("PopUpDiagramType")
+--	local elem_type = pop_up_diagram:find("/elemType")
+--	local empty_dgr = pop_up_diagram:find("/eType")
+--	local collection_dgr = pop_up_diagram:find("/cType")
+--	if elem_type:is_not_empty() then
+--		pop_up_diagram_type:link("elemType", elem_type)
+--	elseif empty_dgr:is_not_empty() then
+--		pop_up_diagram_type:link("eType", empty_dgr)
+--	elseif collection_dgr:is_not_empty() then
+--		pop_up_diagram_type:link("cType", collection_dgr)
+--	end
+--	pop_up_diagram:find("/popUpElement"):each(function(pop_up_element)
+--		lQuery.create("PopUpElementType"):link("popUpDiagramType", pop_up_diagram_type)
+--						:attr({
+--						caption = pop_up_element:attr("caption"),
+--						id = pop_up_element:attr("id"),
+--						picture = pop_up_element:attr("picture"),
+--						nr = pop_up_element:attr("nr"),
+--						procedureName = pop_up_element:attr("procedure_name"),
+--						shouldBeIncluded = pop_up_element:attr("shouldBeIncluded")
+--						})	
+--	end)
+--end)
+--lQuery("Toolbar"):each(function(toolbar)
+--	lQuery.create("ToolbarType"):link("graphDiagramType", toolbar:find("/graphDiagramType"))
+--	toolbar:find("/tool"):each(function(tool)
+--		lQuery.create("ToolbarElementType"):attr({
+--							id = tool:attr("id"),
+--							caption = tool:attr("caption"),
+--							picture = tool:attr("picture"),
+--							procedureName = tool:attr("procedure_name"),
+--							shouldBeIncluded = tool:attr("shouldBeIncluded")
+--							})
+--	end)
+--end)
+--
+--
+--local palette_elems = lQuery("PaletteElement")
+--local has_palette_links = lQuery("Palette/paletteElement")
+--palette_elems:remove(has_palette_links):delete()
+--
+----local tmp_free_box = lQuery("PaletteFreeBox[id = 'FreeBox']:first()")
+----local free_box = lQuery("PaletteFreeBox[id = 'FreeBox']"):remove(tmp_free_box)
+----free_box:find("/paletteElement"):delete()
+----free_box:delete()
+--
+--local tmp_free_box2 = lQuery("PaletteFreeBox[id = 'FreeComment']:first()")
+--local free_box2 = lQuery("PaletteFreeBox[id = 'FreeComment']"):remove(tmp_free_box2)
+----free_box2:find("/paletteElement"):delete()
+--free_box2:delete()
+--
+--
+--lQuery("KeyboardShortcut"):each(function(key)
+--	key:attr({procedureName = key:attr("procedure_name")})
+--end)
+--
+--print("Palette")
+--lQuery("Palette"):each(function(palette)
+--	if palette:find("/graphDiagramType"):is_empty() then
+--		print("delete palette")
+--		palette:delete()
+--	end
+--end)
+--
+--lQuery("Palette"):each(function(palette)
+--	local diagram = palette:find("/graphDiagram")
+--	local diagram_type = palette:find("/graphDiagramType")
+--	local palette_type = lQuery.create("PaletteType"):link("graphDiagramType", diagram_type)
+--	palette:find("/paletteElement"):each(function(palette_elem)
+--		lQuery.create("PaletteElementType"):link("paletteType", palette_type)
+--							:link("elemType", palette_elem:find("/elemType"))
+--							:attr({
+--							id = palette_elem:attr("id"),
+--							caption = palette_elem:attr("caption"),
+--							picture = palette_elem:attr("picture"),
+--							nr = palette_elem:attr("nr"),
+--							shouldBeIncluded = palette_elem:attr("shouldBeIncluded")
+--							})
+--	end)
+--end)
+--lQuery("EdgeType"):each(function(edge_type)
+--	local pair = edge_type:find("/pair")
+--		local direction = ""
+--		if pair:size() == 2 then
+--			direction = "BiDirectional"
+--			local tmp_pair = pair:find("[id = 'direct']")
+--			local start_type = tmp_pair:find("/start")
+--			local end_type = tmp_pair:find("/end")
+--			tmp_pair:remove_link("start", start_type)
+--			tmp_pair:remove_link("end", end_type)
+--			tmp_pair:remove_link("edgeType", edge_type)
+--			edge_type:link("start", start_type)
+--			edge_type:link("end", end_type)
+--		else
+--			if pair:attr("id") == "direct" and pair:attr("reverse") == "true" then
+--				direction = "ReverseBiDirectional"
+--				local start_type = pair:find("/end")
+--				local end_type = pair:find("/start")
+--				pair:remove_link("start", start_type)
+--				pair:remove_link("end", end_type)
+--				pair:remove_link("edgeType", edge_type)
+--				edge_type:link("start", start_type)
+--				edge_type:link("end", end_type)
+--			elseif pair:attr("id") == "direct" then
+--				direction = "UniDirectional"
+--							local start_type = pair:find("/start")
+--				local end_type = pair:find("/end")
+--				pair:remove_link("start", start_type)
+--				pair:remove_link("end", end_type)
+--				pair:remove_link("edgeType", edge_type)
+--				edge_type:link("start", start_type)
+--				edge_type:link("end", end_type)
+--			end
+--		end
+--	edge_type:attr({direction = direction})
+--end)
+--
+--lQuery("Pair"):delete()
+--
+--local tmp1 = "inputFieldRow+Button"
+--local tmp2 = "MultiLineTextBoxRow+Button"
+--
+--local widget_table = {
+--	InputRow = "InputField",
+--	ComboBoxRow = "ComboBox",
+--	CheckBoxRow = "CheckBox",
+--	MultiLineTextBoxRow = "TextArea",
+--	LabelRow = "Label",
+--	ListBoxRow = "ListBox",
+--	[tmp1] = "InputField+Button",
+--	[tmp2] = "TextArea+Button"
+--	}
+--lQuery("PropertyRow"):each(function(prop_row)
+--	local row_type = prop_row:attr("rowType")
+--	if row_type ~= "StereotypeRow" then
+--		local new_row_type = widget_table[row_type]
+--		prop_row:attr({rowType = new_row_type})
+--	else
+--		prop_row:delete()
+--	end
+--end)
+--
+--lQuery("GraphDiagramType"):each(function(diagram_type)
+--	local diagrams = diagram_type:find("/graphDiagram")
+--	local palette = diagram_type:find("/palette")
+--	palette:link("graphDiagram", diagrams)
+--	diagram_type:remove_link("palette", palette)
+--end)
+--
+--
+--lQuery("Palette"):each(function(palette)
+--	if palette:find("/graphDiagram"):is_empty() then
+--		palette:delete()
+--	end
+--end)
+--
+--lQuery("PopUpElement"):delete()
+--lQuery("PopUpDiagram"):delete()
+--
+--lQuery("GraphDiagramType"):each(function(diagram_type)
+--	local proc1 = diagram_type:attr("procDynamicPopUpE")
+--	local proc2 = diagram_type:attr("procDynamicPopUpC")
+--	if proc1 ~= nil and proc1 ~= "" then
+--		lQuery.create("Translet", {extensionPoint = "procDynamicPopUpE" , procedureName = proc1}):link("type", diagram_type)
+--	end
+--	if proc2 ~= nil and proc2 ~= "" then
+--		lQuery.create("Translet", {extensionPoint = "procDynamicPopUpC" , procedureName = proc2}):link("type", diagram_type)
+--	end
+--	local diagram_style = lQuery.create("GraphDiagramStyle", {
+--							id = diagram_type:attr("id"),
+--							caption = diagram_type:attr("caption"),
+--							bkgColor = 16775408,
+--							printZoom = 1000,
+--							screenZoom = 1000,
+--							layoutMode = 0,
+--							layoutAlgorithm = 3,
+--							graphDiagramType = diagram_type
+--	})
+--	diagram_type:find("/graphDiagram"):link("graphDiagramStyle", diagram_style)
+--end)
+--
+----delete MM
+--	--lQuery.model.delete_link("Element", "copy")
+--	--lQuery.model.delete_link("Compartment", "l2ClickEvent")
+--	--lQuery.model.delete_link("Node", "child")
+--
+--	lQuery.model.delete_property("Element", "id")
+--	lQuery.model.delete_property("Element", "is_update_in_progress")
+--	lQuery.model.delete_property("Element", "elemType")
+--	lQuery.model.delete_property("Element", "is_definition")
+--	lQuery.model.delete_property("Element", "status")
+--	lQuery.model.delete_property("Element", "isInProjectDiagram")
+--	lQuery.model.delete_property("Element", "hint")
+--
+--	lQuery.model.delete_property("GraphDiagramType", "bkgColor")
+--	lQuery.model.delete_property("GraphDiagramType", "printZoom")
+--	lQuery.model.delete_property("GraphDiagramType", "screenZoom")
+--	lQuery.model.delete_property("GraphDiagramType", "layoutMode")
+--	lQuery.model.delete_property("GraphDiagramType", "layoutAlgorithm")
+--
+--	lQuery.model.delete_property("Compartment", "compartType")
+--	lQuery.model.delete_property("Compartment", "isBlocked")
+--	lQuery.model.delete_property("Compartment", "isFalse")
+--	lQuery.model.delete_property("Compartment", "is_update_in_progress")
+--	lQuery.model.delete_property("Compartment", "value_before_edit")
+--	lQuery.model.delete_property("Compartment", "isInvisible")
+--	lQuery.model.delete_property("Compartment", "status")
+--
+--	lQuery.model.delete_property("PopUpElement", "nr")
+--	lQuery.model.delete_property("PopUpElement", "id")
+--	lQuery.model.delete_property("PopUpElement", "procedure_name")
+--	
+--	lQuery.model.delete_property("PopUpDiagram", "id")
+--
+--	lQuery.model.delete_property("PaletteElement", "id")
+--	lQuery.model.delete_property("PaletteElement", "nr")
+--
+--	lQuery.model.delete_property("Translet", "action")
+--
+--	lQuery.model.delete_property("GraphDiagramType", "procDynamnicPopUpE")
+--	lQuery.model.delete_property("GraphDiagramType", "procDynamnicPopUpC")
+--
+--	lQuery.model.delete_class("PopUpMenu")
+--	lQuery.model.delete_class("PopUpMenuItem")
+--	lQuery.model.delete_class("PopUpMenuItemSelectEvent")
+--
+--	lQuery.model.delete_link("Toolbar", "tool")
+--	lQuery.model.delete_class("Tool")
+--	lQuery.model.delete_class("ToolSelectEvent")
+--
+--	--lQuery.model.delete_property("PopUpElement", "visibility")
+----end of delete MM
+--
+--local edge_type = lQuery("EdgeType[id = 'Association']:has(/graphDiagramType[id = 'OWL'])")
+--local compart_types = edge_type:find("/compartType")
+--edge_type:remove_link("compartType", compart_types)
+--local direct_compart_type = lQuery.create("CompartType", {id = "Role", caption = "Role", isGroup = "true"}):link("elemType", edge_type)
+--local inverse_compart_type = lQuery.create("CompartType", {id = "InvRole", caption = "InvRole", isGroup = "true"}):link("elemType", edge_type)
+--
+--compart_types:each(function(compart_type)
+--	if compart_type:attr("id") ~= "InverseFunctional" and (string.sub(compart_type:attr("id"), 1, 3) == "Inv" or string.sub(compart_type:attr("id"), 1, 15) == "ASFictitiousInv") then
+--		if string.sub(compart_type:attr("id"), 1, 15) == "ASFictitiousInv" then
+--			compart_type:attr({id = "ASFictitious" .. string.sub(compart_type:attr("id"), 15)})
+--			local sub_compart_type = compart_type:find("/subCompartType")
+--			sub_compart_type:attr({id = string.sub(sub_compart_type:attr("id"), 4)})
+--		else
+--			compart_type:attr({id = string.sub(compart_type:attr("id"), 4)})
+--		end
+--		edge_type:remove_link("compartType", compart_type)
+--		compart_type:link("parentCompartType", inverse_compart_type)
+--	else
+--		edge_type:remove_link("compartType", compart_type)
+--		compart_type:link("parentCompartType", direct_compart_type)
+--	end
+--end)
+--
+--lQuery("PropertyDiagram"):each(function(prop_dgr)
+--	if prop_dgr:attr("width") == "" then
+--		prop_dgr:attr({width = 250})
+--	end
+--end)
+--
+--local project_diagram = lQuery("Project/graphDiagram")
+--local project_diagram_type = project_diagram:find("/graphDiagramType")
+--local toolbar_type = lQuery.create("ToolbarType"):link("graphDiagramType", project_diagram_type)
+--local toolbar_element_type = lQuery.create("ToolbarElementType", {
+--							id = "Export Translet",
+--							caption = "Export Translet",
+--							picture = "1asdScript.BMP",
+--							procedureName = "OWL_specific.process_export_translet"
+--}):link("toolbarType", toolbar_type)
+--
+--local toolbar = lQuery.create("Toolbar"):link("graphDiagram", project_diagram)
+--					:link("type", toolbar_type)
+--local toolbar_element = lQuery.create("ToolbarElement", {
+--							caption = toolbar_element_type:attr("caption"),
+--							picture = toolbar_element_type:attr("picture"),
+--							procedureName = toolbar_element_type:attr("procedureName")
+--}):link("toolbar", toolbar)
+--:link("type", toolbar_element_type)
+--
+--
+--lQuery("PaletteElementType"):each(function(palette_elem_type)
+--	configurator.relink_palette_from_palette_elem_type(palette_elem_type)
+--end)
+--
+--
+--utilities.execute_cmd("AfterConfigCmd")
+
+local elem_type = utilities.active_elements():find("/elemType")
+
+print_children(elem_type)
+
+
+function print_children(parent, res_table)
+	local children = parent:find("/subCompartType")
+	if children:is_not_empty() then
+		print()
+
+	end
+end
+
+print("end main")

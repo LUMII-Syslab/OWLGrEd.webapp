@@ -1,0 +1,70 @@
+return {
+  [2000954482] = {
+    ["class"] = "AA#Tag",
+    ["properties"] = {
+      ["tagValue"] = "AnnotationAssertion(owlgred:posInTable $subject $value)",
+      ["tagKey"] = "owl_Field_axiom"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000954687] = {
+    ["class"] = "AA#FieldStyleSetting",
+    ["properties"] = {
+      ["isElementStyleSetting"] = "false",
+      ["value"] = "0"
+    },
+    ["links"] = {
+      ["fieldStyleFeature"] = {
+        [1] = 2000911368
+      }
+    }
+  },
+  [2000954212] = {
+    ["class"] = "AA#Profile",
+    ["properties"] = {
+      ["name"] = "DefaultOrderAssociation"
+    },
+    ["links"] = {
+      ["field"] = {
+        [1] = 2000954262
+      },
+      ["tag"] = {
+        [1] = 2000954502
+      }
+    }
+  },
+  [2000929258] = "AA#ContextType[id=Association/Role]",
+  [2000954262] = {
+    ["class"] = "AA#Field",
+    ["properties"] = {
+      ["pattern"] = "a-zA-Z0-9-_",
+      ["propertyEditorTab"] = "Direct",
+      ["fieldType"] = "InputField",
+      ["name"] = "posInTable"
+    },
+    ["links"] = {
+      ["context"] = {
+        [1] = 2000929258
+      },
+      ["selfStyleSetting"] = {
+        [1] = 2000954687
+      },
+      ["tag"] = {
+        [1] = 2000954482
+      }
+    }
+  },
+  [2000911368] = "AA#CompartStyleItem[itemName=isVisible]",
+  [2000954502] = {
+    ["class"] = "AA#Tag",
+    ["properties"] = {
+      ["tagValue"] = "owlgred:=<http://lumii.lv/2011/1.0/owlgred#>",
+      ["tagKey"] = "owl_Import_Prefixes"
+    },
+    ["links"] = {
+      
+    }
+  }
+}, 2000954212

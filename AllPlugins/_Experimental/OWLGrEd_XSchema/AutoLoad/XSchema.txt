@@ -1,0 +1,266 @@
+return {
+  [2000953871] = {
+    ["class"] = "AA#Field",
+    ["properties"] = {
+      ["pattern"] = "a-zA-Z0-9-_",
+      ["defaultValue"] = "true",
+      ["displayPlaceBefore"] = "Name",
+      ["propertyEditorTab"] = "Direct",
+      ["fieldType"] = "CheckBox",
+      ["name"] = "allValuesFrom",
+      ["propertyEditorPlaceBefore"] = "Name"
+    },
+    ["links"] = {
+      ["context"] = {
+        [1] = 2000929258
+      },
+      ["choiceItem"] = {
+        [1] = 2000953872,
+        [2] = 2000953873
+      },
+      ["translet"] = {
+        [1] = 2000953874
+      }
+    }
+  },
+  [2000953879] = {
+    ["class"] = "AA#Field",
+    ["properties"] = {
+      ["pattern"] = "!",
+      ["displayPlaceBefore"] = "Name",
+      ["propertyEditorTab"] = "Direct",
+      ["fieldType"] = "CheckBox",
+      ["name"] = "noSchema",
+      ["propertyEditorPlaceBefore"] = "Name"
+    },
+    ["links"] = {
+      ["context"] = {
+        [1] = 2000929258
+      },
+      ["choiceItem"] = {
+        [1] = 2000953880,
+        [2] = 2000953881
+      },
+      ["translet"] = {
+        [1] = 2000953882
+      }
+    }
+  },
+  [2000953872] = {
+    ["class"] = "AA#ChoiceItem",
+    ["properties"] = {
+      ["caption"] = "true"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000953880] = {
+    ["class"] = "AA#ChoiceItem",
+    ["properties"] = {
+      ["caption"] = "true"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000953873] = {
+    ["class"] = "AA#ChoiceItem",
+    ["properties"] = {
+      ["caption"] = "false"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000953881] = {
+    ["class"] = "AA#ChoiceItem",
+    ["properties"] = {
+      ["caption"] = "false"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000953866] = {
+    ["class"] = "AA#Profile",
+    ["properties"] = {
+      ["name"] = "Schema"
+    },
+    ["links"] = {
+      ["field"] = {
+        [1] = 2000953867,
+        [2] = 2000953871,
+        [3] = 2000953875,
+        [4] = 2000953879,
+        [5] = 2000953883
+      }
+    }
+  },
+  [2000953874] = {
+    ["class"] = "AA#Translet",
+    ["properties"] = {
+      ["procedure"] = "OWLGrEd_XSchema.schema.setPrefixesPlusFromAllFaluesFrom"
+    },
+    ["links"] = {
+      ["task"] = {
+        [1] = 2000928693
+      }
+    }
+  },
+  [2000953882] = {
+    ["class"] = "AA#Translet",
+    ["properties"] = {
+      ["procedure"] = "OWLGrEd_XSchema.schema.setPrefixesNoSchema"
+    },
+    ["links"] = {
+      ["task"] = {
+        [1] = 2000928693
+      }
+    }
+  },
+  [2000929258] = "AA#ContextType[id=Association/Role]",
+  [2000953867] = {
+    ["class"] = "AA#Field",
+    ["properties"] = {
+      ["pattern"] = "+",
+      ["defaultValue"] = "true",
+      ["displayPlaceBefore"] = "Name",
+      ["fieldType"] = "CheckBox",
+      ["name"] = "allValuesFrom",
+      ["propertyEditorPlaceBefore"] = "Name"
+    },
+    ["links"] = {
+      ["context"] = {
+        [1] = 2000929259
+      },
+      ["choiceItem"] = {
+        [1] = 2000953868,
+        [2] = 2000953869
+      },
+      ["translet"] = {
+        [1] = 2000953870
+      }
+    }
+  },
+  [2000928693] = "AA#TransletTask[taskName=procFieldEntered]",
+  [2000953883] = {
+    ["class"] = "AA#Field",
+    ["properties"] = {
+      ["pattern"] = "a-zA-Z0-9-_",
+      ["displayPlaceBefore"] = "Name",
+      ["fieldType"] = "CheckBox",
+      ["name"] = "hiddenCompartment"
+    },
+    ["links"] = {
+      ["choiceItem"] = {
+        [1] = 2000953884,
+        [2] = 2000953885
+      },
+      ["context"] = {
+        [1] = 2000929259
+      }
+    }
+  },
+  [2000929259] = "AA#ContextType[id=Class/Attributes]",
+  [2000953868] = {
+    ["class"] = "AA#ChoiceItem",
+    ["properties"] = {
+      ["caption"] = "true"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000953876] = {
+    ["class"] = "AA#ChoiceItem",
+    ["properties"] = {
+      ["caption"] = "true",
+      ["notation"] = "!"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000953884] = {
+    ["class"] = "AA#ChoiceItem",
+    ["properties"] = {
+      ["caption"] = "true",
+      ["notation"] = "&"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000953869] = {
+    ["class"] = "AA#ChoiceItem",
+    ["properties"] = {
+      ["caption"] = "false"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000953877] = {
+    ["class"] = "AA#ChoiceItem",
+    ["properties"] = {
+      ["caption"] = "false"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000953885] = {
+    ["class"] = "AA#ChoiceItem",
+    ["properties"] = {
+      ["caption"] = "false"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000953870] = {
+    ["class"] = "AA#Translet",
+    ["properties"] = {
+      ["procedure"] = "OWLGrEd_XSchema.schema.setPrefixesPlusFromAllFaluesFromDataProperty"
+    },
+    ["links"] = {
+      ["task"] = {
+        [1] = 2000928693
+      }
+    }
+  },
+  [2000953878] = {
+    ["class"] = "AA#Translet",
+    ["properties"] = {
+      ["procedure"] = "OWLGrEd_XSchema.schema.setPrefixesNoSchemaDataProperty"
+    },
+    ["links"] = {
+      ["task"] = {
+        [1] = 2000928693
+      }
+    }
+  },
+  [2000953875] = {
+    ["class"] = "AA#Field",
+    ["properties"] = {
+      ["pattern"] = "!",
+      ["displayPlaceBefore"] = "Name",
+      ["fieldType"] = "CheckBox",
+      ["name"] = "noSchema",
+      ["propertyEditorPlaceBefore"] = "Name"
+    },
+    ["links"] = {
+      ["context"] = {
+        [1] = 2000929259
+      },
+      ["choiceItem"] = {
+        [1] = 2000953876,
+        [2] = 2000953877
+      },
+      ["translet"] = {
+        [1] = 2000953878
+      }
+    }
+  }
+}, 2000953866

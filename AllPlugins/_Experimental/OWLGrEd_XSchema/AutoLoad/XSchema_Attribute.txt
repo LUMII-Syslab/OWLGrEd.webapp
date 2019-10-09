@@ -1,0 +1,119 @@
+return {
+  [2000953882] = {
+    ["class"] = "AA#ChoiceItem",
+    ["properties"] = {
+      ["caption"] = "false"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000953875] = {
+    ["class"] = "AA#Profile",
+    ["properties"] = {
+      ["name"] = "Schema_Attribute"
+    },
+    ["links"] = {
+      ["field"] = {
+        [1] = 2000953876,
+        [2] = 2000953880
+      }
+    }
+  },
+  [2000953879] = {
+    ["class"] = "AA#Translet",
+    ["properties"] = {
+      ["procedure"] = "OWLGrEd_XSchema.schema.setPrefixesPlusFromAllFaluesFromAttribute"
+    },
+    ["links"] = {
+      ["task"] = {
+        [1] = 2000928693
+      }
+    }
+  },
+  [2000953883] = {
+    ["class"] = "AA#Translet",
+    ["properties"] = {
+      ["procedure"] = "OWLGrEd_XSchema.schema.setPrefixesNoSchemaAttribute"
+    },
+    ["links"] = {
+      ["task"] = {
+        [1] = 2000928693
+      }
+    }
+  },
+  [2000953872] = "AA#ContextType[id=Attribute]",
+  [2000953876] = {
+    ["class"] = "AA#Field",
+    ["properties"] = {
+      ["pattern"] = "a-zA-Z0-9-_",
+      ["defaultValue"] = "true",
+      ["displayPlaceBefore"] = "Name",
+      ["fieldType"] = "CheckBox",
+      ["name"] = "allValuesFrom",
+      ["propertyEditorPlaceBefore"] = "Name"
+    },
+    ["links"] = {
+      ["context"] = {
+        [1] = 2000953872
+      },
+      ["choiceItem"] = {
+        [1] = 2000953877,
+        [2] = 2000953878
+      },
+      ["translet"] = {
+        [1] = 2000953879
+      }
+    }
+  },
+  [2000953880] = {
+    ["class"] = "AA#Field",
+    ["properties"] = {
+      ["pattern"] = "a-zA-Z0-9-_",
+      ["displayPlaceBefore"] = "Name",
+      ["fieldType"] = "CheckBox",
+      ["name"] = "noSchema",
+      ["propertyEditorPlaceBefore"] = "Name"
+    },
+    ["links"] = {
+      ["context"] = {
+        [1] = 2000953872
+      },
+      ["choiceItem"] = {
+        [1] = 2000953881,
+        [2] = 2000953882
+      },
+      ["translet"] = {
+        [1] = 2000953883
+      }
+    }
+  },
+  [2000953877] = {
+    ["class"] = "AA#ChoiceItem",
+    ["properties"] = {
+      ["caption"] = "true"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000953881] = {
+    ["class"] = "AA#ChoiceItem",
+    ["properties"] = {
+      ["caption"] = "true"
+    },
+    ["links"] = {
+      
+    }
+  },
+  [2000928693] = "AA#TransletTask[taskName=procFieldEntered]",
+  [2000953878] = {
+    ["class"] = "AA#ChoiceItem",
+    ["properties"] = {
+      ["caption"] = "false"
+    },
+    ["links"] = {
+      
+    }
+  }
+}, 2000953875
