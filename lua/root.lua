@@ -5,17 +5,17 @@ report = require("reporter.report")
 --MM = require("MM_build")
 
 function create_project()
-    lQuery.create("TDAKernel::AttachEngineCommand", {
+    lQuery.create("AttachEngineCommand", {
 	name = "GraphDiagramEngine" })
-                :link("submitter", lQuery("TDAKernel::Submitter"))
+                :link("submitter", lQuery("Submitter"))
                 :delete()
-    lQuery.create("TDAKernel::AttachEngineCommand", {
+    lQuery.create("AttachEngineCommand", {
 	name = "TreeEngine" })
-                :link("submitter", lQuery("TDAKernel::Submitter"))
+                :link("submitter", lQuery("Submitter"))
                 :delete()
-    lQuery.create("TDAKernel::AttachEngineCommand", {
+    lQuery.create("AttachEngineCommand", {
 	name = "DialogEngine" })
-                :link("submitter", lQuery("TDAKernel::Submitter"))
+                :link("submitter", lQuery("Submitter"))
                 :delete()
 	dofile(tda.GetRuntimePath() .. "/lua/configurator/MetaModels/TypeAndMappingMM.lua")
 	const.const()

@@ -86,17 +86,17 @@ sed -i 's/local role_name = rep.GetTypeName(role_attributes.link_type_id)/-- loc
                   local role_name = rep.getRoleName(link)/g' $BASE_DIR/lua/configurator/delta.lua
 
 sed -i 's/function create_project()/function create_project()\
-    lQuery.create("TDAKernel::AttachEngineCommand", {\
+    lQuery.create("AttachEngineCommand", {\
 	name = "GraphDiagramEngine" })\
-                :link("submitter", lQuery("TDAKernel::Submitter"))\
+                :link("submitter", lQuery("Submitter"))\
                 :delete()\
-    lQuery.create("TDAKernel::AttachEngineCommand", {\
+    lQuery.create("AttachEngineCommand", {\
 	name = "TreeEngine" })\
-                :link("submitter", lQuery("TDAKernel::Submitter"))\
+                :link("submitter", lQuery("Submitter"))\
                 :delete()\
-    lQuery.create("TDAKernel::AttachEngineCommand", {\
+    lQuery.create("AttachEngineCommand", {\
 	name = "DialogEngine" })\
-                :link("submitter", lQuery("TDAKernel::Submitter"))\
+                :link("submitter", lQuery("Submitter"))\
                 :delete()/g' $BASE_DIR/lua/root.lua
 
 sed -i 's/return string.match/return "some id" --removed string.match/g' $BASE_DIR/lua/project_open_trace.lua
