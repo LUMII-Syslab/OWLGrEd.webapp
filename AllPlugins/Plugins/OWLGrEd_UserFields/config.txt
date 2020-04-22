@@ -1,4 +1,0 @@
-keepOriginalIsCompositionField = 1
-showAdvancedByDefault = 0
-showStylePalette = 1
-showOWLGrEdMenu = 1
