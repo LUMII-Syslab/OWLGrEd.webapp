@@ -35,15 +35,15 @@ local Tool_plugin_dir_path
 local Bin_plugin_dir_path
 
 if tda.isWeb then
-	Plugin_dir_path = tda.GetToolPath() .. "/" .. "AllPlugins"
-	Plugin_data_dir_path = tda.GetToolPath() .. "/" .. "PluginData"
-	Plugin_uninstall_dir_path = tda.GetToolPath() .. "/" .. "AllPlugins"
+	Plugin_dir_path = tda.GetToolPath() .. "\\" .. "AllPlugins"
+	Plugin_data_dir_path = tda.GetToolPath() .. "\\" .. "PluginData"
+	Plugin_uninstall_dir_path = tda.GetToolPath() .. "\\" .. "AllPlugins"
 else
-	Plugin_dir_path = tda.GetProjectPath() .. "/" .. "Plugins"
-	Plugin_data_dir_path = tda.GetProjectPath() .. "/" .. "PluginData"
-	Plugin_uninstall_dir_path = tda.GetProjectPath() .. "/" .. "PluginUninstalls"
-	Tool_plugin_dir_path = tda.GetToolPath() .. "/" .. "Plugins"
-	Bin_plugin_dir_path = tda.GetRuntimePath() .. "/" .. "Plugins"
+	Plugin_dir_path = tda.GetProjectPath() .. "\\" .. "Plugins"
+	Plugin_data_dir_path = tda.GetProjectPath() .. "\\" .. "PluginData"
+	Plugin_uninstall_dir_path = tda.GetProjectPath() .. "\\" .. "PluginUninstalls"
+	Tool_plugin_dir_path = tda.GetToolPath() .. "\\" .. "Plugins"
+	Bin_plugin_dir_path = tda.GetRuntimePath() .. "\\" .. "Plugins"
 end
 
 
@@ -51,34 +51,34 @@ function path_to_plugin(plugin_name)
   if tda.isWeb then
 	return tda.FindPath(Plugin_dir_path, plugin_name)
   end
-  return Plugin_dir_path .. "/" .. plugin_name
+  return Plugin_dir_path .. "\\" .. plugin_name
 end
 
 function plugin_info_path(plugin_name)
-  return path_to_plugin(plugin_name) .. "/info.lua"
+  return path_to_plugin(plugin_name) .. "\\info.lua"
 end
 
 function plugin_info_path_txt(plugin_name)
-  return path_to_plugin(plugin_name) .. "/info.txt"
+  return path_to_plugin(plugin_name) .. "\\info.txt"
 end
 
 function plugin_load_script_path(plugin_name)
-  return path_to_plugin(plugin_name) .. "/load.lua"
+  return path_to_plugin(plugin_name) .. "\\load.lua"
 end
 
 function plugin_update_script_path(plugin_name)
-  return path_to_plugin(plugin_name) .. "/update.lua"
+  return path_to_plugin(plugin_name) .. "\\update.lua"
 end
 
 function plugin_original_unload_script_path(plugin_name)
-  return path_to_plugin(plugin_name) .. "/unload.lua"
+  return path_to_plugin(plugin_name) .. "\\unload.lua"
 end
 
 function plugin_unload_script_path(plugin_name)
   if isWeb then
-	return tda.FindPath(Plugin_uninstall_dir_path, plugin_name) .. "/unload.lua"
+	return tda.FindPath(Plugin_uninstall_dir_path, plugin_name) .. "\\unload.lua"
   end
-  return Plugin_uninstall_dir_path .. "/" .. plugin_name .. "/unload.lua"
+  return Plugin_uninstall_dir_path .. "\\" .. plugin_name .. "\\unload.lua"
 end
 
 function get_plugin_info(plugin_name)
@@ -162,12 +162,12 @@ end
 
 function make_plugin_data_dir(plugin_name)
   lfs.mkdir(Plugin_data_dir_path)
-  lfs.mkdir(Plugin_data_dir_path .. "/" .. plugin_name)
+  lfs.mkdir(Plugin_data_dir_path .. "\\" .. plugin_name)
 end
 
 function make_plugin_unload_dir(plugin_name)
   lfs.mkdir(Plugin_uninstall_dir_path)
-  lfs.mkdir(Plugin_uninstall_dir_path .. "/" .. plugin_name)
+  lfs.mkdir(Plugin_uninstall_dir_path .. "\\" .. plugin_name)
 end
 
 function initialize_plugin_mechanism()
@@ -194,8 +194,8 @@ function load_plugin(plugin_name)
   -- prepare environment for load script
   local old_path = package.path
   local old_cpath = package.cpath
-  package.path = path_to_plugin(plugin_name) .. "/?.lua;" .. old_path
-  package.cpath = path_to_plugin(plugin_name) .. "/?.dll;" .. old_cpath
+  package.path = path_to_plugin(plugin_name) .. "\\?.lua;" .. old_path
+  package.cpath = path_to_plugin(plugin_name) .. "\\?.dll;" .. old_cpath
 
   if tda.isWeb == nil then make_plugin_data_dir(plugin_name) end
   
@@ -261,7 +261,7 @@ function unload_plugin(plugin_name)
 
 	  if tda.isWeb == nil then
 		  -- delete unload script
-		  utils.delete(Plugin_uninstall_dir_path .. "/" .. plugin_name)
+		  utils.delete(Plugin_uninstall_dir_path .. "\\" .. plugin_name)
       end
       -- remove plugin from registry
       lQuery("Plugin"):filter_attr_value_equals("id", plugin_name):delete()
@@ -278,7 +278,7 @@ end
 function unload_deleted_plugins()
   local names_of_loaded_plugins = set.new(lQuery("Plugin[status=loaded]"):add(lQuery("Plugin[status=unloaded]")):map(function(p) return p:attr("id") end))
   local plugins_in_plugin_folder = set.new(get_plugin_names(Plugin_dir_path))
-  
+
   if tda.isWeb then 
 	plugins_in_plugin_folder = set.new(lQuery("Plugin[status=unloaded]"):map(function(p) return p:attr("id") end))
   end
@@ -310,8 +310,8 @@ function update_plugin(plugin_instance)
     -- prepare environment for load script
     local old_path = package.path
     local old_cpath = package.cpath
-    package.path = path_to_plugin(plugin_name) .. "/?.lua;" .. old_path
-    package.cpath = path_to_plugin(plugin_name) .. "/?.dll;" .. old_cpath
+    package.path = path_to_plugin(plugin_name) .. "\\?.lua;" .. old_path
+    package.cpath = path_to_plugin(plugin_name) .. "\\?.dll;" .. old_cpath
 
     -- call load script
     local pcall_status, pcall_err_or_load_res, load_err = pcall(dofile, plugin_update_script_path(plugin_name))
@@ -367,12 +367,12 @@ function copy_missing_plugins_from_tool_or_bin()
   
   -- copy missing from tool
   for plugin_name in pairs(tool_plugins - project_plugins) do
-    utils.copy(Tool_plugin_dir_path .. "/" .. plugin_name, Plugin_dir_path .. "/" .. plugin_name)
+    utils.copy(Tool_plugin_dir_path .. "\\" .. plugin_name, Plugin_dir_path .. "\\" .. plugin_name)
   end
   
   -- copy missing from bin
   for plugin_name in pairs((bin_plugins - tool_plugins) - project_plugins) do
-    utils.copy(Bin_plugin_dir_path .. "/" .. plugin_name, Plugin_dir_path .. "/" .. plugin_name)
+    utils.copy(Bin_plugin_dir_path .. "\\" .. plugin_name, Plugin_dir_path .. "\\" .. plugin_name)
   end
 end
 

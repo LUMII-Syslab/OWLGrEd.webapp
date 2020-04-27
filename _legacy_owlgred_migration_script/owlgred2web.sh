@@ -232,7 +232,7 @@ sed -i 's/v = require(path)/v = require(pathdot)/g' $BASE_DIR/lua/libs/utilities
 
 sed -i 's/\*all/\*a/g' $BASE_DIR/lua/plugin_mechanism/loader.lua
 sed -i 's/plugin_mechanism.loader.refresh_plugins/&()/g' $BASE_DIR/lua/plugin_mechanism/loader.lua
-sed -i 's/\"\\\\/\"\//g' $BASE_DIR/lua/plugin_mechanism/loader.lua
+#--better to keep \\, since otherwise plugins are uninstalled; sed -i 's/\"\\\\/\"\//g' $BASE_DIR/lua/plugin_mechanism/loader.lua
 
 
 mv $BASE_DIR/lua/reporter/report.lua $BASE_DIR/lua/reporter/report_original.lua 
