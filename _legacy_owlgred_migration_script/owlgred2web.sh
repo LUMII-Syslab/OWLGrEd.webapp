@@ -7,7 +7,7 @@ TDA_DIR=/mnt/c/tda1.5
 # BASE_DIR is the OWLGrEd.app directory witihin webappos/apps,
 # where OWLGrEd for webAppOS will be located; the script will
 # work with the $BASE_DIR/lua and $BASE_DIR/AllPlugins dirs
-BASE_DIR=/mnt/d/webappos.org/webappos/apps/OWLGrEd.app
+BASE_DIR=/mnt/d/webappos.gits/webAppOS/dist/apps/OWLGrEd.webapp
 CUR_DIR=$(dirname "$0")
 
 #if false; then
@@ -232,6 +232,7 @@ sed -i 's/v = require(path)/v = require(pathdot)/g' $BASE_DIR/lua/libs/utilities
 
 sed -i 's/\*all/\*a/g' $BASE_DIR/lua/plugin_mechanism/loader.lua
 sed -i 's/plugin_mechanism.loader.refresh_plugins/&()/g' $BASE_DIR/lua/plugin_mechanism/loader.lua
+sed -i 's/\"\\\\/\"\//g' $BASE_DIR/lua/plugin_mechanism/loader.lua
 
 
 mv $BASE_DIR/lua/reporter/report.lua $BASE_DIR/lua/reporter/report_original.lua 
@@ -256,3 +257,4 @@ end/g' $BASE_DIR/lua/interpreter/ProjectProcessing.lua
 
 sed -i 's/1.5\*estimate_import_item_count/1.0\*estimate_import_item_count/g' $BASE_DIR/lua/owl_protege.lua
 #fi
+
