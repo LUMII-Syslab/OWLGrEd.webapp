@@ -871,6 +871,9 @@ function setActiveIcon()
 	caption = "Select active icon"
 	filter = "Pictures(*.bmp)"
 	start_folder = tda.GetProjectPath() .. "\\Pictures\\"
+	if tda.isWeb then
+	    start_folder = "$WEBAPPOS_ROOT/apps/OWLGrEd.webapp/web-root/Pictures"
+	end
 	start_file = ""
 	save = false
 	local path = tda.BrowseForFile(caption, filter, start_folder, start_file, save)
