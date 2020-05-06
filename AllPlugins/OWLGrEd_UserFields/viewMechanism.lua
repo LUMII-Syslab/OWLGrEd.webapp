@@ -872,7 +872,7 @@ function setActiveIcon()
 	local filter = "Pictures(*.bmp)"
 	local start_folder
 	if tda.isWeb then 
-		start_folder = tda.GetToolPath().. "/web-root/Pictures/"
+		start_folder = "$WEBAPPOS_ROOT/apps/OWLGrEd.webapp/web-root/Pictures/"
 	else
 		start_folder = tda.GetProjectPath() .. "\\Pictures\\"
 	end
@@ -945,7 +945,7 @@ function setInactiveIcon()
 	local filter = "Pictures(*.bmp)"
 	local start_folder
 	if tda.isWeb then 
-		start_folder = tda.GetToolPath().. "/web-root/Pictures/"
+		start_folder = "$WEBAPPOS_ROOT/apps/OWLGrEd.webapp/web-root/Pictures/"
 	else
 		start_folder = tda.GetProjectPath() .. "\\Pictures\\"
 	end
