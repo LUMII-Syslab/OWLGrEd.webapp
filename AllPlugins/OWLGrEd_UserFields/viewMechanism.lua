@@ -27,9 +27,9 @@ function viewMechanism()
 	  
 	  local path
 	  if tda.isWeb then
-			path = tda.FindPath(tda.GetToolPath() .. "\\AllPlugins", "OWLGrEd_UserFields")
+			path = tda.FindPath(tda.GetToolPath() .. "/AllPlugins", "OWLGrEd_UserFields") .. "/"
 	  else
-			path = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields"
+			path = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields\\"
 	  end
 	  
 	  local form = lQuery.create("D#Form", {
@@ -58,11 +58,11 @@ function viewMechanism()
 							,lQuery.create("D#VerticalBox", {
 								component = {
 									lQuery.create("D#ImageButton",{
-										fileName = path .. "\\up.BMP"
+										fileName = path .. "up.bmp"
 										,eventHandler = utilities.d_handler("Click", "lua_engine", "lua.OWLGrEd_UserFields.viewMechanism.upView()")
 									})
 									,lQuery.create("D#ImageButton",{
-										fileName = path .. "\\down.BMP"
+										fileName = path .. "down.bmp"
 										,eventHandler = utilities.d_handler("Click", "lua_engine", "lua.OWLGrEd_UserFields.viewMechanism.downView()")
 									})
 								}
@@ -510,15 +510,15 @@ function setShowInPalette()
 	if focus == "true" then 
 		local picturePath
 		if tda.isWeb then 
-			picturePath = tda.GetToolPath().. "\\web-root\\Pictures"
+			picturePath = tda.GetToolPath().. "/web-root/Pictures/"
 		else
-			picturePath = tda.GetProjectPath() .. "\\Pictures"
+			picturePath = tda.GetProjectPath() .. "\\Pictures\\"
 		end
 		
 		--jaatjauno palleteStyle forma
 		lQuery.create("D#Row", {id = view:id(),component={
 			lQuery.create("D#Label", {caption=view:attr("name")})
-			,lQuery.create("D#ImageButton", {fileName = picturePath .. "\\" .. view:attr("inActiveIcon")})
+			,lQuery.create("D#ImageButton", {fileName = picturePath .. view:attr("inActiveIcon")})
 			,lQuery.create("D#Label", {caption="Default"})
 			,lQuery.create("D#CheckBox", {
 				id=view:id()
@@ -753,9 +753,9 @@ function View(viewName)
 	  
 	  local picturePath
 		if tda.isWeb then 
-			picturePath = tda.GetToolPath().. "\\web-root\\Pictures"
+			picturePath = tda.GetToolPath().. "/web-root/Pictures/"
 		else
-			picturePath = tda.GetProjectPath() .. "\\Pictures"
+			picturePath = tda.GetProjectPath() .. "\\Pictures\\"
 		end
 	  
 	  local form = lQuery.create("D#Form", {
@@ -800,13 +800,13 @@ function View(viewName)
 							,lQuery.create("D#Label", {caption = 'Active icon'})
 							,lQuery.create("D#ImageButton", {
 								id = "activeIcon"
-								,fileName = picturePath .. "\\" .. view:attr("activeIcon")
+								,fileName = picturePath .. view:attr("activeIcon")
 								,eventHandler = utilities.d_handler("Click", "lua_engine", "lua.OWLGrEd_UserFields.viewMechanism.setActiveIcon()")
 							})
 							,lQuery.create("D#Label", {caption = 'Inactive icon'})
 							,lQuery.create("D#ImageButton", {
 								id = "inactiveIcon"
-								,fileName = picturePath .. "\\" .. view:attr("inActiveIcon")
+								,fileName = picturePath ..  view:attr("inActiveIcon")
 								,eventHandler = utilities.d_handler("Click", "lua_engine", "lua.OWLGrEd_UserFields.viewMechanism.setInactiveIcon()")
 							})
 						}
@@ -868,17 +868,24 @@ function View(viewName)
 end
 
 function setActiveIcon()
-	caption = "Select active icon"
-	filter = "Pictures(*.bmp)"
-	start_folder = tda.GetProjectPath() .. "\\Pictures\\"
-	if tda.isWeb then
-	    start_folder = "$WEBAPPOS_ROOT/apps/OWLGrEd.webapp/web-root/Pictures"
+	local caption = "Select active icon"
+	local filter = "Pictures(*.bmp)"
+	local start_folder
+	if tda.isWeb then 
+		start_folder = tda.GetToolPath().. "/web-root/Pictures/"
+	else
+		start_folder = tda.GetProjectPath() .. "\\Pictures\\"
 	end
 	start_file = ""
 	save = false
 	local path = tda.BrowseForFile(caption, filter, start_folder, start_file, save)
 	if path ~= "" then
-		local startS, endS = string.find(path, "\\Pictures\\")
+		local startS, endS
+		if tda.isWeb then 
+			startS, endS = string.find(path, "/Pictures/")
+		else
+			startS, endS = string.find(path, "\\Pictures\\")
+		end
 		path = string.sub(path, endS+1)
 
 		local selectedItem=lQuery("D#ListBox[id='ListWithViews']/selected")
@@ -904,9 +911,9 @@ end
 function refreshIconButton(view)
     local picturePath
 	if tda.isWeb then 
-		picturePath = tda.GetToolPath().. "\\web-root\\Pictures"
+		picturePath = tda.GetToolPath().. "/web-root/Pictures/"
 	else
-		picturePath = tda.GetProjectPath() .. "\\Pictures"
+		picturePath = tda.GetProjectPath() .. "\\Pictures\\"
 	end
 	
 	lQuery("D#Row[id='RowForPalette']/component"):delete()
@@ -919,13 +926,13 @@ function refreshIconButton(view)
 		lQuery.create("D#Label", {caption = 'Active icon'}):link("container", lQuery("D#Row[id='RowForPalette']"))
 		lQuery.create("D#ImageButton", {
 			id = "activeIcon"
-			,fileName = picturePath .. "\\" .. view:attr("activeIcon")
+			,fileName = picturePath ..  view:attr("activeIcon")
 			,eventHandler = utilities.d_handler("Click", "lua_engine", "lua.OWLGrEd_UserFields.viewMechanism.setActiveIcon()")
 		}):link("container", lQuery("D#Row[id='RowForPalette']"))
 		lQuery.create("D#Label", {caption = 'Inactive icon'}):link("container", lQuery("D#Row[id='RowForPalette']"))
 		lQuery.create("D#ImageButton", {
 			id = "inactiveIcon"
-			,fileName = picturePath .. "\\" .. view:attr("inActiveIcon")
+			,fileName = picturePath .. view:attr("inActiveIcon")
 			,eventHandler = utilities.d_handler("Click", "lua_engine", "lua.OWLGrEd_UserFields.viewMechanism.setInactiveIcon()")
 		}):link("container", lQuery("D#Row[id='RowForPalette']"))
 		
@@ -934,14 +941,24 @@ end
 
 
 function setInactiveIcon()
-	caption = "Select inactive icon"
-	filter = "Pictures(*.bmp)"
-	start_folder = tda.GetProjectPath() .. "\\Pictures\\"
+	local caption = "Select inactive icon"
+	local filter = "Pictures(*.bmp)"
+	local start_folder
+	if tda.isWeb then 
+		start_folder = tda.GetToolPath().. "/web-root/Pictures/"
+	else
+		start_folder = tda.GetProjectPath() .. "\\Pictures\\"
+	end
 	start_file = ""
 	save = false
 	local path = tda.BrowseForFile(caption, filter, start_folder, start_file, save)
 	if path ~= "" then
-		local startS, endS = string.find(path, "\\Pictures\\")
+		local startS, endS
+		if tda.isWeb then 
+			startS, endS = string.find(path, "/Pictures/")
+		else
+			startS, endS = string.find(path, "\\Pictures\\")
+		end
 		path = string.sub(path, endS+1)
 
 		local selectedItem=lQuery("D#ListBox[id='ListWithViews']/selected")
@@ -1052,14 +1069,19 @@ end
 function yesDefaultProfile()
 	caption = "Select text file"
 	filter = "text file(*.txt)"
-	start_folder = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields\\"
+	local start_folder
+	if tda.isWeb then
+		start_folder = tda.FindPath(tda.GetToolPath() .. "/AllPlugins", "OWLGrEd_UserFields")
+	else
+		start_folder = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields"
+	end
 	start_file = "viewCollection.txt"
 	save = false
 	local path = tda.BrowseForFile(caption, filter, start_folder, start_file, save)
 	if path ~= "" then
 		
 		f = assert(io.open(path, "r"))
-		local t = f:read("*a")
+		local t = f:read("*all")
 		f:close()
 		
 		local Letter = lpeg.R("az") + lpeg.R("AZ") + lpeg.R("09") + lpeg.S("_/:#.<>='(){}?!@$%^&*-+|")
@@ -1186,9 +1208,9 @@ function viewsInProfiles(profileName)
 
   local path
   if tda.isWeb then
-		path = tda.FindPath(tda.GetToolPath() .. "\\AllPlugins", "OWLGrEd_UserFields")
+		path = tda.FindPath(tda.GetToolPath() .. "/AllPlugins", "OWLGrEd_UserFields") .."/"
   else
-		path = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields"
+		path = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields\\"
   end
   
   local form = lQuery.create("D#Form", {
@@ -1225,11 +1247,11 @@ function viewsInProfiles(profileName)
 						,lQuery.create("D#VerticalBox",{
 							component = {
 								lQuery.create("D#ImageButton",{
-									fileName = path .. "\\up.BMP"
+									fileName = path .. "up.bmp"
 									,eventHandler = utilities.d_handler("Click", "lua_engine", "lua.OWLGrEd_UserFields.viewMechanism.upView()")
 								})
 								,lQuery.create("D#ImageButton",{
-									fileName = path .. "\\down.BMP"
+									fileName = path .. "down.bmp"
 									,eventHandler = utilities.d_handler("Click", "lua_engine", "lua.OWLGrEd_UserFields.viewMechanism.downView()")
 								})
 							}

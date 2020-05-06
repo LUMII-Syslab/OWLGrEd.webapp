@@ -96,6 +96,11 @@ function get_ontologies(diagram, diagrams)
 	end)
 end
 
+function find_diagram_source(diagram_source)
+	if diagram_source:find("/elemType"):attr("id") == "OWL" then return diagram_source
+	else return find_diagram_source(diagram_source:find("/graphDiagram/parent")) end
+end
+
 function make_global_ns_uri_table(diagram)
 	local ns_uri_table = {}
 	local ontology_seeds = {}
@@ -107,7 +112,7 @@ function make_global_ns_uri_table(diagram)
 		ns_uri_table[ns] = make_uri(uri)
 	end
 
-	local diagram_source = diagram:find("/parent")
+	local diagram_source = find_diagram_source(diagram:find("/parent"))
 	local current_diagram_uri = diagram_source:find("/compartment:has(/compartType[id = 'Prefix'])"):attr_e("value")
 
 	local length = string.len(current_diagram_uri)
@@ -364,7 +369,7 @@ function export_Header(diagram)
 		diagram = utilities.current_diagram()
 	end
 	ns_uri_table = make_global_ns_uri_table(diagram)
-	local ontology = diagram:find("/parent")
+	local ontology = find_diagram_source(diagram:find("/parent"))
 	local name = ontology:find("/compartment:has(/compartType[id = 'Name'])"):attr_e("value")
 	local uri = ontology:find("/compartment:has(/compartType[id = 'Prefix'])"):attr_e("value")
 	ontology_ns = ontology:find("/compartment:has(/compartType[id = 'Name'])"):attr_e("value")
@@ -379,6 +384,7 @@ function export_Header(diagram)
 	end
 	local ontology_header = ""
 	local header = get_import_ontology_ns_uri(ns_uri_table)
+
 	if uri ~= nil then
 		local exportOntology = require("exportOntology")
 		local imports = exportOntology.getImports(ontology)
@@ -402,7 +408,7 @@ function export_diagram(diagrams, increment_progress, is_global_tables_needed)
 	end
 	for i, diagram in pairs(diagrams) do
 		local isObjectAttribute = require("isObjectAttribute")
-		isObjectAttribute.setIsObjectAttributeForAllAttribute()
+		
 		if is_global_tables_needed then
 			ns_uri_table = make_global_ns_uri_table(diagram)
 			object_property_uri_table = make_global_object_property_uri_table(diagram)
@@ -410,6 +416,8 @@ function export_diagram(diagrams, increment_progress, is_global_tables_needed)
 			object_uri_table = make_global_object_uri_table(diagram)
 			class_uri_table = make_global_class_uri_table(diagram)
 		end
+		
+		isObjectAttribute.setIsObjectAttributeForAllAttribute(diagram, ns_uri_table)
 
 		-- print(dumptable(data_property_uri_table))
 		local export_ontology = require("exportOntology")

@@ -129,7 +129,7 @@ function is_plugin_valid(plugin_name)
   if plugin_valid then
     return true
   else
-    log("error loading plugin", plugin_name)
+    log(plugin_name, "plugin is not valid")
     --log(dumptable(errors))
     return false, errors
   end
@@ -278,7 +278,7 @@ end
 function unload_deleted_plugins()
   local names_of_loaded_plugins = set.new(lQuery("Plugin[status=loaded]"):add(lQuery("Plugin[status=unloaded]")):map(function(p) return p:attr("id") end))
   local plugins_in_plugin_folder = set.new(get_plugin_names(Plugin_dir_path))
-
+  
   if tda.isWeb then 
 	plugins_in_plugin_folder = set.new(lQuery("Plugin[status=unloaded]"):map(function(p) return p:attr("id") end))
   end

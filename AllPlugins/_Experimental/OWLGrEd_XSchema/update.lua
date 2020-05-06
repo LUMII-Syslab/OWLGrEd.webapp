@@ -4,12 +4,12 @@ local plugin_name = "OWLGrEd_XSchema"
 local path
 
 if tda.isWeb then 
-	path = tda.FindPath(tda.GetToolPath() .. "\\AllPlugins", "OWLGrEd_XSchema")
+	path = tda.FindPath(tda.GetToolPath() .. "/AllPlugins", "OWLGrEd_XSchema") .. "/"
 else
-	path = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_XSchema"
+	path = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_XSchema\\"
 end
 
-local plugin_info_path = path .. "\\info.lua"
+local plugin_info_path = path .. "info.lua"
 local f = io.open(plugin_info_path, "r")
 local info = loadstring("return" .. f:read("*a"))()
 f:close()
@@ -21,10 +21,10 @@ local current_version = lQuery("Plugin[id='".. plugin_name .."']"):attr("version
 if current_version < "0.2" and current_version < plugin_version then
 	local completeMetamodelUserFields = require "OWLGrEd_UserFields.completeMetamodel"
 	
-	local pathConfiguration = path .. "\\AutoLoadConfiguration"
+	local pathConfiguration = path .. "AutoLoadConfiguration"
 	completeMetamodelUserFields.loadAutoLoadContextType(pathConfiguration)
 	
-	local pathContextType = path .. "\\AutoLoadAttributes"
+	local pathContextType = path .. "AutoLoadAttributes"
 	completeMetamodelUserFields.loadAutoLoadProfiles(pathContextType)
 	
 	lQuery("CompartType[id='allValuesFrom']"):attr("caption", "Schema Only (no domain assertion)")

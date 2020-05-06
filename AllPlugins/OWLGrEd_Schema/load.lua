@@ -8,15 +8,15 @@ local path
 local picturePath
 
 if tda.isWeb then 
-	path = tda.FindPath(tda.GetToolPath() .. "\\AllPlugins", "OWLGrEd_Schema")
-	picturePath = tda.GetToolPath().. "\\web-root\\Pictures"
+	path = tda.FindPath(tda.GetToolPath() .. "/AllPlugins", "OWLGrEd_Schema") .. "/"
+	picturePath = tda.GetToolPath().. "/web-root/Pictures/"
 else
-	path = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_Schema"
-	picturePath = tda.GetProjectPath() .. "\\Pictures"
+	path = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_Schema\\"
+	picturePath = tda.GetProjectPath() .. "\\Pictures\\"
 end	
 
-utils.copy(path .. "\\export.BMP",
-           picturePath .. "\\OWLGrEd_Schema_export.BMP")
+utils.copy(path .. "export.bmp",
+           picturePath .. "OWLGrEd_Schema_export.bmp")
 		   
 -- lQuery.model.add_class("OWL_PP#ExportParameter")
 -- lQuery.model.add_property("OWL_PP#ExportParameter", "pName")
@@ -76,7 +76,7 @@ local view_manager_toolbar_el = lQuery.create("ToolbarElementType", {
 		  toolbarType = toolbarType,
 		  id = "SchemaExportParameters",
 		  caption = "Ontology export preferences",
-		  picture = "OWLGrEd_Schema_export.BMP",
+		  picture = "OWLGrEd_Schema_export.bmp",
 		  procedureName = "OWLGrEd_Schema.schema.exportParametersForm"
 		})	
 -- refresh project diagram toolbar
@@ -85,11 +85,11 @@ configurator.make_toolbar(project_dgr_type)
 lQuery.create("PopUpElementType", {id="Export Configuration", caption="Ontology Export Options", nr=6, visibility=true, procedureName="OWLGrEd_Schema.schema.exportParametersForm"})
 		:link("popUpDiagramType", lQuery("GraphDiagramType[id='projectDiagram']/rClickEmpty"))
 --]]
-local pathConfiguration = path .. "\\AutoLoadConfiguration"
+local pathConfiguration = path .. "AutoLoadConfiguration"
 completeMetamodelUserFields.loadAutoLoadContextType(pathConfiguration)
 
 --ieladet profilu
-local pathContextType = path .. "\\AutoLoad"
+local pathContextType = path .. "AutoLoad"
 completeMetamodelUserFields.loadAutoLoadProfiles(pathContextType)
 
 lQuery("CompartType[id='schemaAssertion']"):attr("caption", "Schema assertion")

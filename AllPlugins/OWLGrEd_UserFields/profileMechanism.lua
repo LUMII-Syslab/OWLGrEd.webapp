@@ -165,11 +165,11 @@ end
 function restoreFromSnapshot()
 	local start_folder
 	if tda.isWeb then 
-		start_folder = tda.FindPath(tda.GetToolPath() .. "\\AllPlugins", "OWLGrEd_UserFields") .. "\\snapshot\\"
+		start_folder = tda.FindPath(tda.GetToolPath() .. "/AllPlugins", "OWLGrEd_UserFields") .. "/snapshot/"
 	else
 		start_folder = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields\\snapshot\\"
 	end
-	local path = start_folder .. "\\snapshot.txt"
+	local path = start_folder .. "snapshot.txt"
 	serialize.import_from_file(path)
 	
 		local configuration = lQuery("AA#Configuration"):first()
@@ -306,10 +306,16 @@ function saveProfileSnapshot()
 			}
 		}
 		
-		MakeDir(tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields\\snapshot")
-	
-		local start_folder = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields\\snapshot\\"
-		local path = start_folder .. "\\snapshot.txt"
+		local start_folder
+		if tda.isWeb then 
+			start_folder = tda.FindPath(tda.GetToolPath() .. "/AllPlugins", "OWLGrEd_UserFields") .. "/snapshot/"
+			MakeDir(tda.FindPath(tda.GetToolPath() .. "/AllPlugins", "OWLGrEd_UserFields") .. "/snapshot")
+		else
+			start_folder = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields\\snapshot\\"
+			MakeDir(tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields\\snapshot")
+		end
+		
+		local path = start_folder .. "snapshot.txt"
 		serialize.save_to_file(objects_to_export, export_spec, path)
 end
 
@@ -573,14 +579,20 @@ end
 function import()
 	caption = "Select text file"
 	filter = "text file(*.txt)"
-	start_folder = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields\\examples\\"
+	
+	local start_folder
+	if tda.isWeb then 
+		start_folder = tda.FindPath(tda.GetToolPath() .. "/AllPlugins", "OWLGrEd_UserFields") .. "/examples/"
+	else
+		start_folder = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields\\examples\\"
+	end
 	start_file = ""
 	save = false
 	local path = tda.BrowseForFile(caption, filter, start_folder, start_file, save)
 	if path ~= "" then
 		
 		f = assert(io.open(path, "r"))
-		local t = f:read("*a")
+		local t = f:read("*all")
 		f:close()
 		
 		local contextTypeTable = {}
@@ -890,8 +902,14 @@ function yesLoadForm()
 				}
 			}
 		}
-		start_folder = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields\\user\\AutoLoad\\"
-		local path = start_folder .. "\\" .. profileName:attr("value") .. ".txt"
+
+		local start_folder
+		if tda.isWeb then 
+			start_folder = tda.FindPath(tda.GetToolPath() .. "/AllPlugins", "OWLGrEd_UserFields") .. "/user/AutoLoad/"	
+		else
+			start_folder = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields\\user\\AutoLoad\\"
+		end
+		local path = start_folder .. profileName:attr("value") .. ".txt"
 		serialize.save_to_file(objects_to_export, export_spec, path)
 	end
 	
@@ -980,7 +998,13 @@ function export()
 		   return false -- do not delete the form
 		end
 		if folder ~= "" then
-			local path = folder .. "\\" .. lQuery("D#InputField[id='exportFileName']"):attr("text") .. ".txt"
+			local path
+			if tda.isWeb then 
+				path = folder .. "/" .. lQuery("D#InputField[id='exportFileName']"):attr("text") .. ".txt"
+			else
+				path = folder .. "\\" .. lQuery("D#InputField[id='exportFileName']"):attr("text") .. ".txt"
+			end
+			
 			serialize.save_to_file(objects_to_export, export_spec, path)
 			loadProfileNameClose()
 		else --print("Export was canceled") 

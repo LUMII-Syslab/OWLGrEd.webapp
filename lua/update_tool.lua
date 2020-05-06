@@ -56,4 +56,16 @@ function update_version(curent_version, tool_version)
 			
 		log("Project updated to version 1.6.9.5")
 	end
+	
+	--services context menu
+	if curent_version < "1.6.9.6" and tool_version >= "1.6.9.6" then
+		
+		lQuery("PopUpElementType[id='Recalculate isObjectAttribute']"):delete()
+		
+		lQuery.create("PopUpElementType", {id="Services", caption="Services", nr=8, visibility=true, procedureName="services.showServices"})
+		:link("popUpDiagramType", lQuery("GraphDiagramType[id='OWL']/rClickEmpty"))
+		
+		log("Project updated to version 1.6.9.6")
+	end
+	
 end

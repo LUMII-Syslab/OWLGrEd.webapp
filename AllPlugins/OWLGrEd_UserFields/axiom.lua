@@ -280,7 +280,7 @@ function prefix(St, colon, field)
 	--local t = lpeg.match(p, tag:attr("value"))
 	local tt = {}
 	local colon2 = lpeg.P(":=")
-	local Letter2 = lpeg.R("az") + lpeg.R("AZ") + lpeg.R("09") + lpeg.S("_/#.<>:")
+	local Letter2 = lpeg.R("az") + lpeg.R("AZ") + lpeg.R("09") + lpeg.S("_/#.<>:-")
 	local String2 = lpeg.C(Letter2 * (Letter2) ^ 0)
 	local Letter3 = lpeg.R("az") + lpeg.R("AZ") + lpeg.R("09") + lpeg.S("_/#.<>")
 	local String3 = lpeg.C(Letter3 * (Letter3) ^ 0)

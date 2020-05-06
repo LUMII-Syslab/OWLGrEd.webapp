@@ -8,17 +8,17 @@ local completeMetamodelUserFields = require "OWLGrEd_UserFields.completeMetamode
 local path
 
 if tda.isWeb then 
-	path = tda.FindPath(tda.GetToolPath() .. "\\AllPlugins", "UML_Plus")
+	path = tda.FindPath(tda.GetToolPath() .. "/AllPlugins", "UML_Plus") .. "/"
 else
-	path = tda.GetProjectPath() .. "\\Plugins\\UML_Plus"
+	path = tda.GetProjectPath() .. "\\Plugins\\UML_Plus\\"
 end
 
 -- load additional configuration (not present for UML_Plus extension)
-local pathConfiguration = path .. "\\AutoLoadConfiguration"
+local pathConfiguration = path .. "AutoLoadConfiguration"
 completeMetamodelUserFields.loadAutoLoadContextType(pathConfiguration)
 
 -- load custom field definitions
-local pathContextType = path .. "\\AutoLoad"
+local pathContextType = path .. "AutoLoad"
 completeMetamodelUserFields.loadAutoLoadProfiles(pathContextType)
 
 -- add translet to extension point RecalculateStylesInImport

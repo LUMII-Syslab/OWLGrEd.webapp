@@ -5,12 +5,12 @@ local plugin_name = "OWLGrEd_AllValuesFrom"
 local path
 
 if tda.isWeb then 
-	path = tda.FindPath(tda.GetToolPath() .. "\\AllPlugins", "OWLGrEd_AllValuesFrom")
+	path = tda.FindPath(tda.GetToolPath() .. "/AllPlugins", "OWLGrEd_AllValuesFrom") .. "/"
 else
-	path = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_AllValuesFrom"
+	path = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_AllValuesFrom\\"
 end
 
-local plugin_info_path = path .. "\\info.lua"
+local plugin_info_path = path .. "info.lua"
 local f = io.open(plugin_info_path, "r")
 local info = loadstring("return" .. f:read("*a"))()
 f:close()

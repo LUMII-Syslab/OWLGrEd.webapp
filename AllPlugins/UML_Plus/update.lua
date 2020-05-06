@@ -5,12 +5,12 @@ local plugin_name = "UML_Plus"
 local path
 
 if tda.isWeb then 
-	path = tda.FindPath(tda.GetToolPath() .. "\\AllPlugins", "UML_Plus")
+	path = tda.FindPath(tda.GetToolPath() .. "/AllPlugins", "UML_Plus") .. "/"
 else
-	path = tda.GetProjectPath() .. "\\Plugins\\UML_Plus"
+	path = tda.GetProjectPath() .. "\\Plugins\\UML_Plus\\"
 end
 
-local plugin_info_path = path .. "\\info.lua"
+local plugin_info_path = path .. "info.lua"
 
 local f = io.open(plugin_info_path, "r")
 local info = loadstring("return" .. f:read("*a"))()
@@ -25,7 +25,7 @@ plugin_version = string.sub(plugin_version, 3)
 if current_version < 2 then
 		--add new profile
 	local completeMetamodelUserFields = require "OWLGrEd_UserFields.completeMetamodel"
-	local pathContextType = path .. "\\UML_Plus_IsOrdered.txt"
+	local pathContextType = path .. "UML_Plus_IsOrdered.txt"
 	
 	completeMetamodelUserFields.loadAutoLoadProfile(pathContextType)
 end

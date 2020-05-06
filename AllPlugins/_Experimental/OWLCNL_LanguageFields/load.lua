@@ -16,15 +16,15 @@ local path
 local picturePath
 
 if tda.isWeb then 
-	path = tda.FindPath(tda.GetToolPath() .. "\\AllPlugins", "OWLCNL_LanguageFields")
-	picturePath = tda.GetToolPath().. "\\web-root\\Pictures"
+	path = tda.FindPath(tda.GetToolPath() .. "/AllPlugins", "OWLCNL_LanguageFields") .. "/"
+	picturePath = tda.GetToolPath().. "/web-root/Pictures"
 else
-	path = tda.GetProjectPath() .. "\\Plugins\\OWLCNL_LanguageFields"
-	picturePath = tda.GetProjectPath() .. "\\Pictures"
+	path = tda.GetProjectPath() .. "\\Plugins\\OWLCNL_LanguageFields\\"
+	picturePath = tda.GetProjectPath() .. "\\Pictures\\"
 end	
 
-utils.copy(path .. "\\aaCNL.bmp",
-           picturePath .. "\\OWLCNL_LanguageFields_aaCNL.bmp")
+utils.copy(path .. "aaCNL.bmp",
+           picturePath .. "OWLCNL_LanguageFields_aaCNL.bmp")
 
 local toolbar_el = lQuery.create("ToolbarElementType", {
   toolbarType = toolbarTypeOwl,
@@ -46,11 +46,11 @@ local toolbar_el2 = lQuery.create("ToolbarElementType", {
 configurator.make_toolbar(owl_dgr_type)
 
 --ieladet konfiguraciju
-local pathConfiguration = path .. "\\AutoLoadConfiguration"
+local pathConfiguration = path .. "AutoLoadConfiguration"
 completeMetamodelUserFields.loadAutoLoadContextType(pathConfiguration)
 
 --ieladet DBExpr profilu
-local pathContextType = path .. "\\AutoLoad"
+local pathContextType = path .. "AutoLoad"
 completeMetamodelUserFields.loadAutoLoadProfiles(pathContextType)
 
 --complete metamodel

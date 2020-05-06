@@ -231,7 +231,6 @@ function setIsObjectAttribute(attributeType,attribute, attributeValue)
 	
 	if attribute:is_not_empty() and attributeType:is_not_empty() then
 		if diagram:find("/parent"):is_not_empty() then diagram = diagram:find("/parent/graphDiagram") end
-		local t = tda_to_protege.make_global_ns_uri_table(diagram)
 		local funcSin, objectOrData = MP.generateAttributeType(attributeValue, diagram, t, classList, datatypeList)
 		local isObjectAttribute = attribute:find("/subCompartment:has(/compartType[id='isObjectAttribute'])")
 		if objectOrData~=nil then

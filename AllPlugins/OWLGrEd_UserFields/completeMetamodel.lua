@@ -12,13 +12,13 @@ function completeMetamodel()
 	
 	local path
 	if tda.isWeb then
-		path = tda.FindPath(tda.GetToolPath() .. "\\AllPlugins", "OWLGrEd_UserFields")
+		path = tda.FindPath(tda.GetToolPath() .. "/AllPlugins", "OWLGrEd_UserFields") .. "/"
 	else
-		path = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields"
+		path = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields\\"
 	end
 	
-	local f = assert(io.open(path .. "\\config.txt", "r"))
-    local t = f:read("*a")
+	local f = assert(io.open(path .. "config.txt", "r"))
+    local t = f:read("*all")
 	f:close()
 	local pat = lpeg.P("showAdvancedByDefault") * lpeg.S(" \n\t") ^ 0 * lpeg.P("=") * lpeg.S(" \n\t") ^ 0 * lpeg.C(lpeg.R("09"))
 	local pat = anywhere(pat)
@@ -347,12 +347,21 @@ function completeMetamodel()
 		lQuery.create("Translet", {extensionPoint = 'procFieldEntered', procedureName = 'OWLGrEd_UserFields.owl_fields_specific.setStyleSetting'}):link("type", obj)
 	end)
 	
+	
+	local pathConfiguration
+	local pathContextType
+	
+	if tda.isWeb then
+		pathConfiguration = path.. "user/AutoLoadConfiguration"
+		pathContextType = path .. "user/AutoLoad"
+	else
+		pathConfiguration = path.. "user\\AutoLoadConfiguration"
+		pathContextType = path .. "user\\AutoLoad"
+	end
 	-- load additional configuration
-	local pathConfiguration = path.. "\\user\\AutoLoadConfiguration"
 	loadAutoLoadContextType(pathConfiguration)
 
 	-- load custom field definitions
-	local pathContextType = path .. "\\user\\AutoLoad"
 	loadAutoLoadProfiles(pathContextType)
 	
 	-- add userFields PopUps

@@ -1084,33 +1084,38 @@ function setAutoWidth(element)
 end
 
 --novac FontStyle uzstaditus stila vienumus (v-stila vienums, newStyle-jaunais stils)
-function removeFontStyleSetting(v, newStyle)
+function removeFontStyleSetting(styleItem, newStyle, newStyleTableDelta)
+		local v = styleItem:attr("setting")
 		if v == "fontStyleBold" then
 			local num = tostring(styleMechanism.toBin(tonumber(lQuery(newStyle):attr("fontStyle"))))
 			local len = string.len(num)
 			val = lQuery(newStyle):attr("fontStyle")
-			val = val - 1
+			if styleItem:attr("value") == "1" then val = val - 1
+			else val = val + 1 end
 			lQuery(newStyle):attr("fontStyle", val)
 			newStyleTableDelta["fontStyle"] = val
 		elseif v == "fontStyleItalic" then
 			local num = tostring(styleMechanism.toBin(tonumber(lQuery(newStyle):attr("fontStyle"))))
 			local len = string.len(num)
 			val = lQuery(newStyle):attr("fontStyle")
-			val = val - 2
+			if styleItem:attr("value") == "1" then val = val - 2
+			else val = val + 2 end
 			lQuery(newStyle):attr("fontStyle", val)
 			newStyleTableDelta["fontStyle"] = val
 		elseif v == "fontStyleUnderline" then
 			local num = tostring(styleMechanism.toBin(tonumber(lQuery(newStyle):attr("fontStyle"))))
 			local len = string.len(num)
 			val = lQuery(newStyle):attr("fontStyle")
-			val = val - 4
+			if styleItem:attr("value") == "1" then val = val - 4
+			else val = val + 4 end
 			lQuery(newStyle):attr("fontStyle", val)
 			newStyleTableDelta["fontStyle"] = val
 		elseif v == "fontStyleStrikeout" then
 			local num = tostring(styleMechanism.toBin(tonumber(lQuery(newStyle):attr("fontStyle"))))
 			local len = string.len(num)
 			val = lQuery(newStyle):attr("fontStyle")
-			val = val - 8
+			if styleItem:attr("value") == "1" then val = val - 8
+			else val = val + 8 end
 			lQuery(newStyle):attr("fontStyle", val)	
 			newStyleTableDelta["fontStyle"] = val
 		end
@@ -1754,7 +1759,7 @@ function CompartStyleBySetting(compartment, sourceType, sourceInformation, exter
 		removedViewCompartStyles:each(function(obj)
 			if obj:attr("setting") == "fontStyleBold" or obj:attr("setting") == "fontStyleItalic" or obj:attr("setting") == "fontStyleUnderline"
 			or obj:attr("setting") == "fontStyleStrikeout" then
-				removeFontStyleSetting(obj:attr("setting"), newStyle, newStyleTableDelta)
+				removeFontStyleSetting(obj, newStyle, newStyleTableDelta)
 			else
 				lQuery(newStyle):attr(obj:attr("setting"), defStyle:attr(obj:attr("setting")))
 				newStyleTableDelta[obj:attr("setting")] = defStyle:attr(obj:attr("setting"))

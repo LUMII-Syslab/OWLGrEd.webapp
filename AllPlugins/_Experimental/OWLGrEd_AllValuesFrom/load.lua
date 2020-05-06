@@ -7,13 +7,13 @@ local d = require("dialog_utilities")
 local path
 
 if tda.isWeb then 
-	path = tda.FindPath(tda.GetToolPath() .. "\\AllPlugins", "OWLGrEd_AllValuesFrom")
+	path = tda.FindPath(tda.GetToolPath() .. "/AllPlugins", "OWLGrEd_AllValuesFrom") .. "/"
 else
-	path = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_AllValuesFrom"
+	path = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_AllValuesFrom\\"
 end
 
 --ieladet profilu
-local pathContextType = path) .. "\\AutoLoad"
+local pathContextType = path) .. "AutoLoad"
 completeMetamodelUserFields.loadAutoLoadProfiles(pathContextType)
 
 lQuery("CompartType[id='allValuesFrom']"):attr("caption", "schemaOnly")

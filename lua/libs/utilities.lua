@@ -36,7 +36,6 @@ end
 -- @param attrs atribûtu saraksts
 function execute_cmd(command_name, attrs)
 	local cmd = lQuery.create(command_name, attrs)
-print("executing from lua "..command_name, attrs)
 	execute_cmd_obj(cmd)
 end
 
@@ -51,7 +50,6 @@ function refresh_form_component(component)
 end
 
 function close_diagram(diagram)
-print("closing diagram ",diagram)
 	execute_cmd("CloseDgrCmd", {graphDiagram = diagram})
 end
 

@@ -70,7 +70,7 @@ function Profile(profileName)
 		})
       ,lQuery.create("D#HorizontalBox", {
         horizontalAlignment = 1
-		,id = "closeForm"
+		,id = "closeFormProfile"
         ,component = {
 		  lQuery.create("D#VerticalBox", {id = "buttons", component={lQuery.create("D#Label", {caption="To enter a field, select a context type 'T: ...' in the structure tree"})}}) 
 		  ,lQuery.create("D#VerticalBox", {
@@ -325,15 +325,15 @@ function openMidProperty()
 	
 	lQuery("D#VerticalBox[id = 'buttons']"):delete()
 	lQuery.create("D#VerticalBox", {id = "buttons",component={lQuery.create("D#Label", {caption="To enter a field, select a context type 'T: ...' in the structure tree"})}})
-	:link("container", lQuery("D#HorizontalBox[id = 'closeForm']"))
+	:link("container", lQuery("D#HorizontalBox[id = 'closeFormProfile']"))
 	
 	lQuery("D#VerticalBox[id = 'closeButton']"):delete()
 	lQuery.create("D#VerticalBox", {
 		id = "closeButton"
 		,horizontalAlignment = 1
-		,component = {close_button}}):link("container", lQuery("D#HorizontalBox[id = 'closeForm']"))
+		,component = {close_button}}):link("container", lQuery("D#HorizontalBox[id = 'closeFormProfile']"))
 
-	lQuery("D#HorizontalBox[id = 'closeForm']"):link("command", utilities.enqued_cmd("D#Command", {info = "Refresh"}))
+	lQuery("D#HorizontalBox[id = 'closeFormProfile']"):link("command", utilities.enqued_cmd("D#Command", {info = "Refresh"}))
 end
 
 --atver profila ipasibu logu (nr-profila identifikatotrs)
@@ -374,15 +374,15 @@ function openProfileProperty(nr)
 	
 	lQuery("D#VerticalBox[id = 'buttons']"):delete()
 	lQuery.create("D#VerticalBox", {id = "buttons",component={lQuery.create("D#Label", {caption="To enter a field, select a context type 'T: ...' in the structure tree"})}})
-	:link("container", lQuery("D#HorizontalBox[id = 'closeForm']"))
+	:link("container", lQuery("D#HorizontalBox[id = 'closeFormProfile']"))
 	
 	lQuery("D#VerticalBox[id = 'closeButton']"):delete()
 	lQuery.create("D#VerticalBox", {
 		id = "closeButton"
 		,horizontalAlignment = 1
-		,component = {close_button}}):link("container", lQuery("D#HorizontalBox[id = 'closeForm']"))
+		,component = {close_button}}):link("container", lQuery("D#HorizontalBox[id = 'closeFormProfile']"))
 	
-	lQuery("D#HorizontalBox[id = 'closeForm']"):link("command", utilities.enqued_cmd("D#Command", {info = "Refresh"}))
+	lQuery("D#HorizontalBox[id = 'closeFormProfile']"):link("command", utilities.enqued_cmd("D#Command", {info = "Refresh"}))
 end
 
 --atvar konteksta tipa ipasibu logu (AA#ContextType)
@@ -402,13 +402,13 @@ function openContextProperty()
 			caption = "Add Field"
 			,eventHandler = utilities.d_handler("Click", "lua_engine", "lua.OWLGrEd_UserFields.Profile.createField()")
 			})}}):link("container", lQuery("D#HorizontalBox[id = 'HorForm']"))
-			:link("container", lQuery("D#HorizontalBox[id = 'closeForm']"))
+			:link("container", lQuery("D#HorizontalBox[id = 'closeFormProfile']"))
 	lQuery("D#VerticalBox[id = 'closeButton']"):delete()
 	lQuery.create("D#VerticalBox", {
 		id = "closeButton"
 		,horizontalAlignment = 1
-		,component = {close_button}}):link("container", lQuery("D#HorizontalBox[id = 'closeForm']"))
-	lQuery("D#HorizontalBox[id = 'closeForm']"):link("command", utilities.enqued_cmd("D#Command", {info = "Refresh"}))
+		,component = {close_button}}):link("container", lQuery("D#HorizontalBox[id = 'closeFormProfile']"))
+	lQuery("D#HorizontalBox[id = 'closeFormProfile']"):link("command", utilities.enqued_cmd("D#Command", {info = "Refresh"}))
 end
 
 --atver choiceItema ipasibu logu (nr-itema identifikators)
@@ -584,13 +584,13 @@ function openItemProperty(nr)--atvar item ipasibu logu
 	})
 	lQuery("D#VerticalBox[id = 'buttons']"):delete()
 	lQuery.create("D#VerticalBox", {id = "buttons"})
-	:link("container", lQuery("D#HorizontalBox[id = 'closeForm']"))
+	:link("container", lQuery("D#HorizontalBox[id = 'closeFormProfile']"))
 	lQuery("D#VerticalBox[id = 'closeButton']"):delete()
 	lQuery.create("D#VerticalBox", {
 		id = "closeButton"
 		,horizontalAlignment = 1
-		,component = {close_button}}):link("container", lQuery("D#HorizontalBox[id = 'closeForm']"))
-	lQuery("D#HorizontalBox[id = 'closeForm']"):link("command", utilities.enqued_cmd("D#Command", {info = "Refresh"}))	
+		,component = {close_button}}):link("container", lQuery("D#HorizontalBox[id = 'closeFormProfile']"))
+	lQuery("D#HorizontalBox[id = 'closeFormProfile']"):link("command", utilities.enqued_cmd("D#Command", {info = "Refresh"}))	
 end
 
 --atver formu ar ElemType piesaistitiem CompartType
@@ -653,7 +653,7 @@ function generateElemTypeTree()
 			})
 		  ,lQuery.create("D#HorizontalBox", {
 			horizontalAlignment = 1
-			,id = "closeForm"
+			,id = "closeFormGenerateElemTypeTree"
 			,component = {
 			  lQuery.create("D#VerticalBox", {id = "buttons"}) 
 			  ,lQuery.create("D#VerticalBox", {
@@ -826,7 +826,7 @@ function collectElemTypeStructure()--?????????????
 		})
       ,lQuery.create("D#HorizontalBox", {
         horizontalAlignment = 1
-		,id = "closeForm"
+		,id = "closeFormCompartmentTree"
         ,component = {
 		  lQuery.create("D#VerticalBox", {id = "buttons"}) 
 		  ,lQuery.create("D#VerticalBox", {
@@ -4734,7 +4734,7 @@ function selectItemDependencies2()
 	lQuery("D#Tab[id='Dependencies']"):link("command", utilities.enqued_cmd("D#Command", {info = "Refresh"}))
 end
 
---nomaina pogas, kad tiek izvelats cits koka elements (defaultItem-lauka tips)
+--nomaina pogas, kad tiek izvelets cits koka elements (defaultItem-lauka tips)
 function changeButtons(defaultItem)
 	local close_button = lQuery.create("D#Button", {
 		caption = "Close"
@@ -4750,7 +4750,7 @@ function changeButtons(defaultItem)
 					,eventHandler = utilities.d_handler("Click", "lua_engine", "lua.OWLGrEd_UserFields.Profile.createSubField()")
 				})
 			}
-		}):link("container", lQuery("D#HorizontalBox[id = 'closeForm']"))
+		}):link("container", lQuery("D#HorizontalBox[id = 'closeFormProfile']"))
 	elseif defaultItem == "ListBox" or defaultItem == "ComboBox" then
 		lQuery("D#VerticalBox[id = 'buttons']"):delete()
 		lQuery.create("D#VerticalBox", {id = "buttons"
@@ -4760,18 +4760,18 @@ function changeButtons(defaultItem)
 					,eventHandler = utilities.d_handler("Click", "lua_engine", "lua.OWLGrEd_UserFields.Profile.createItem()")
 				})
 			}
-		}):link("container", lQuery("D#HorizontalBox[id = 'closeForm']"))
+		}):link("container", lQuery("D#HorizontalBox[id = 'closeFormProfile']"))
 	else 
 		lQuery("D#VerticalBox[id = 'buttons']"):delete()
-		lQuery.create("D#VerticalBox", {id = "buttons"}):link("container", lQuery("D#HorizontalBox[id = 'closeForm']"))
+		lQuery.create("D#VerticalBox", {id = "buttons"}):link("container", lQuery("D#HorizontalBox[id = 'closeFormProfile']"))
 	end
 	lQuery("D#VerticalBox[id = 'closeButton']"):delete()
 	lQuery.create("D#VerticalBox", {
 		id = "closeButton"
 		,horizontalAlignment = 1
 		,component = {close_button}
-	}):link("container", lQuery("D#HorizontalBox[id = 'closeForm']")) 
-	lQuery("D#HorizontalBox[id = 'closeForm']"):link("command", utilities.enqued_cmd("D#Command", {info = "Refresh"}))
+	}):link("container", lQuery("D#HorizontalBox[id = 'closeFormProfile']")) 
+	lQuery("D#HorizontalBox[id = 'closeFormProfile']"):link("command", utilities.enqued_cmd("D#Command", {info = "Refresh"}))
 end
 
 --atlasa profila namespace deklaracijas(profile-atvertais profils)

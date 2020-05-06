@@ -342,56 +342,51 @@ function setPrefixFromSchemaAssertionAttributes(compartment, oldValue)
 		return obj:find("/compartType"):attr("id") == "schemaAssertion"
 	end)
 	
-	
+	local parentCompartment = compartment:find("/parentCompartment")
+	local domainAndRange = parentCompartment:find("/subCompartment:has(/compartType[id='domainAndRange'])")
+
 	if compartment:attr("value") == "false" or (compartment:attr("value") ~= "true" and compartment:attr("value") ~= " ") then 
 		local parentCompartment = compartment:find("/parentCompartment")
-		local noSchema = parentCompartment:find("/subCompartment:has(/compartType[id='noSchema'])")
-		noSchema:attr("value", "false")
-		core.update_compartment_input_from_value(noSchema)
-		
-		noSchema:find("/component"):attr("checked", "false")
-		if noSchema:find("/component"):is_not_empty() then
-			local cmd = utilities.create_command("D#Command", {info = "Refresh"})
-			noSchema:find("/component"):link("command", cmd)
-			utilities.execute_cmd_obj(cmd)
-		end
-		
-		
-		local parentCompartment = compartment:find("/parentCompartment")
 		local domainAndRange = parentCompartment:find("/subCompartment:has(/compartType[id='domainAndRange'])")
-		domainAndRange:attr("value", "true")
-		core.update_compartment_input_from_value(domainAndRange)
+		if domainAndRange:attr("value") ~= "true" then
+			domainAndRange:attr("value", "true")
+			core.update_compartment_input_from_value(domainAndRange)
+			
+			domainAndRange:find("/component"):attr("checked", "true")
+			if domainAndRange:find("/component"):is_not_empty() then
+				local cmd = utilities.create_command("D#Command", {info = "Refresh"})
+				domainAndRange:find("/component"):link("command", cmd)
+				utilities.execute_cmd_obj(cmd)
+			end
+			
+			disableEnableProperty(parentCompartment:find("/subCompartment:has(/compartType[id='localRange'])/component"), false)
+		
+		end
 		
 		local localRange = parentCompartment:find("/subCompartment:has(/compartType[id='localRange'])")
-		localRange:attr("value", "false")
-		core.update_compartment_input_from_value(localRange)
-		
-		domainAndRange:find("/component"):attr("checked", "true")
-		if domainAndRange:find("/component"):is_not_empty() then
-			local cmd = utilities.create_command("D#Command", {info = "Refresh"})
-			domainAndRange:find("/component"):link("command", cmd)
-			utilities.execute_cmd_obj(cmd)
+		if localRange:attr("value") ~= "false" or (localRange:attr("value") ~= "true" or localRange:attr("value") ~= "+") then
+			localRange:attr("value", "false")
+			core.update_compartment_input_from_value(localRange)
+			localRange:find("/component"):attr("checked", "false")
+			if localRange:find("/component"):is_not_empty() then
+				local cmd = utilities.create_command("D#Command", {info = "Refresh"})
+				localRange:find("/component"):link("command", cmd)
+				utilities.execute_cmd_obj(cmd)
+			end
 		end
 		
-		localRange:find("/component"):attr("checked", "false")
-		if localRange:find("/component"):is_not_empty() then
-			local cmd = utilities.create_command("D#Command", {info = "Refresh"})
-			localRange:find("/component"):link("command", cmd)
-			utilities.execute_cmd_obj(cmd)
-		end
-		
-		disableEnableProperty(parentCompartment:find("/subCompartment:has(/compartType[id='localRange'])/component"), false)
-		
-		core.create_missing_compartment(parentCompartment, parentCompartment:find("/compartType"), parentCompartment:find("/compartType/subCompartType[id='hiddenCompartment']"))
+		-- core.create_missing_compartment(parentCompartment, parentCompartment:find("/compartType"), parentCompartment:find("/compartType/subCompartType[id='hiddenCompartment']"))
 		local hiddenCompartment = parentCompartment:find("/subCompartment:has(/compartType[id='hiddenCompartment'])")
-		hiddenCompartment:attr("value", "false")
-		core.update_compartment_input_from_value(hiddenCompartment)
-		if hiddenCompartment:find("/component"):is_not_empty() then
-			local cmd = utilities.create_command("D#Command", {info = "Refresh"})
-			hiddenCompartment:find("/component"):link("command", cmd)
-			utilities.execute_cmd_obj(cmd)
-		end
 		
+		if hiddenCompartment:attr("value") ~= "false" then
+			hiddenCompartment:attr("value", "false")
+			core.update_compartment_input_from_value(hiddenCompartment)
+			-- if hiddenCompartment:find("/component"):is_not_empty() then
+				-- local cmd = utilities.create_command("D#Command", {info = "Refresh"})
+				-- hiddenCompartment:find("/component"):link("command", cmd)
+				-- utilities.execute_cmd_obj(cmd)
+			-- end
+		end
 		-- name:attr("input", "!" .. name:attr("value"))
 		
 		-- parentCompartment:find("/form/component"):each(function(com)
@@ -455,21 +450,30 @@ function setPrefixFromSchemaAssertionAttributes(compartment, oldValue)
 		local domainAndRange = parentCompartment:find("/subCompartment:has(/compartType[id='domainAndRange'])"):attr("value")
 		local localRange = parentCompartment:find("/subCompartment:has(/compartType[id='localRange'])"):attr("value")
 		
-		local result = false
+		local result = "false"
 		if (schemaAssertion == "true" or schemaAssertion == " ") 
 		and (domainAndRange ~= "true" and domainAndRange ~= "!" and domainAndRange ~= " ") 
 		and (localRange ~= "true" and localRange ~= "+") then result = "true" end
-		
-		core.create_missing_compartment(parentCompartment, parentCompartment:find("/compartType"), parentCompartment:find("/compartType/subCompartType[id='hiddenCompartment']"))
-		local hiddenCompartment = parentCompartment:find("/subCompartment:has(/compartType[id='hiddenCompartment'])")
-		hiddenCompartment:attr("value", result)
-		core.update_compartment_input_from_value(hiddenCompartment)
-		if hiddenCompartment:find("/component"):is_not_empty() then
-			local cmd = utilities.create_command("D#Command", {info = "Refresh"})
-			hiddenCompartment:find("/component"):link("command", cmd)
-			utilities.execute_cmd_obj(cmd)
+
+		local domainAndRange = parentCompartment:find("/subCompartment:has(/compartType[id='domainAndRange'])")
+		if domainAndRange:attr("value") == "true" or domainAndRange:attr("value") == "!" or domainAndRange:attr("value") == " " then
+			domainAndRange:attr("value", "true")
+			core.update_compartment_input_from_value(domainAndRange)
 		end
 		
+		
+		
+		-- core.create_missing_compartment(parentCompartment, parentCompartment:find("/compartType"), parentCompartment:find("/compartType/subCompartType[id='hiddenCompartment']"))
+		local hiddenCompartment = parentCompartment:find("/subCompartment:has(/compartType[id='hiddenCompartment'])")
+		if hiddenCompartment:attr("value") ~= result then
+			hiddenCompartment:attr("value", result)
+			core.update_compartment_input_from_value(hiddenCompartment)
+			-- if hiddenCompartment:find("/component"):is_not_empty() then
+				-- local cmd = utilities.create_command("D#Command", {info = "Refresh"})
+				-- hiddenCompartment:find("/component"):link("command", cmd)
+				-- utilities.execute_cmd_obj(cmd)
+			-- end
+		end
 		-- name:attr("input", name:attr("value"))
 		-- local parentCompartment = compartment:find("/parentCompartment")
 		-- parentCompartment:find("/form/component"):each(function(com)
@@ -502,49 +506,57 @@ function setPrefixFromFromDomainAndRangeAttributes(compartment, oldValue)
 	local compartment = compartment:filter(function(obj)
 		return obj:find("/compartType"):attr("id") == "domainAndRange"
 	end)
-	
+
 	if compartment:attr("value") == "true" or compartment:attr("value") == "!" or compartment:attr("value") == " " then 
 		local parentCompartment = compartment:find("/parentCompartment")
 		local localRange = parentCompartment:find("/subCompartment:has(/compartType[id='localRange'])")
-		localRange:attr("value", "false")
-		core.update_compartment_input_from_value(localRange)
 		
-		localRange:find("/component"):attr("checked", "false")
-		if localRange:find("/component"):is_not_empty() then
-			local cmd = utilities.create_command("D#Command", {info = "Refresh"})
-			localRange:find("/component"):link("command", cmd)
-			utilities.execute_cmd_obj(cmd)
+		if localRange:attr("value") ~= "false" then
+			localRange:attr("value", "false")
+			core.update_compartment_input_from_value(localRange)
+			
+			localRange:find("/component"):attr("checked", "false")
+			if localRange:find("/component"):is_not_empty() then
+				local cmd = utilities.create_command("D#Command", {info = "Refresh"})
+				localRange:find("/component"):link("command", cmd)
+				utilities.execute_cmd_obj(cmd)
+			end
+			
+			disableEnableProperty(parentCompartment:find("/subCompartment:has(/compartType[id='localRange'])/component"), false)
 		end
 		
-		disableEnableProperty(parentCompartment:find("/subCompartment:has(/compartType[id='localRange'])/component"), false)
 
 	else
 		local parentCompartment = compartment:find("/parentCompartment")
 		
 		local schemaAssertion = parentCompartment:find("/subCompartment:has(/compartType[id='schemaAssertion'])")
-		schemaAssertion:attr("value", "true")
-		core.update_compartment_input_from_value(schemaAssertion)
 		
-		schemaAssertion:find("/component"):attr("checked", "true")
-		if schemaAssertion:find("/component"):is_not_empty() then
-			local cmd = utilities.create_command("D#Command", {info = "Refresh"})
-			schemaAssertion:find("/component"):link("command", cmd)
-			utilities.execute_cmd_obj(cmd)
+		if schemaAssertion:attr("value") ~= "true" then
+			schemaAssertion:attr("value", "true")
+			core.update_compartment_input_from_value(schemaAssertion)
+			
+			schemaAssertion:find("/component"):attr("checked", "true")
+			if schemaAssertion:find("/component"):is_not_empty() then
+				local cmd = utilities.create_command("D#Command", {info = "Refresh"})
+				schemaAssertion:find("/component"):link("command", cmd)
+				utilities.execute_cmd_obj(cmd)
+			end
 		end
 		
 		local localRange = parentCompartment:find("/subCompartment:has(/compartType[id='localRange'])")
-		localRange:attr("value", "true")
-		core.update_compartment_input_from_value(localRange)
-		
-		localRange:find("/component"):attr("checked", "true")
-		if localRange:find("/component"):is_not_empty() then
-			local cmd = utilities.create_command("D#Command", {info = "Refresh"})
-			localRange:find("/component"):link("command", cmd)
-			utilities.execute_cmd_obj(cmd)
+		if localRange:attr("value") ~= "true" then
+			localRange:attr("value", "true")
+			core.update_compartment_input_from_value(localRange)
+			
+			localRange:find("/component"):attr("checked", "true")
+			if localRange:find("/component"):is_not_empty() then
+				local cmd = utilities.create_command("D#Command", {info = "Refresh"})
+				localRange:find("/component"):link("command", cmd)
+				utilities.execute_cmd_obj(cmd)
+			end
+			
+			disableEnableProperty(parentCompartment:find("/subCompartment:has(/compartType[id='localRange'])/component"), true)
 		end
-		
-		disableEnableProperty(parentCompartment:find("/subCompartment:has(/compartType[id='localRange'])/component"), true)
-		
 	end
 		
 	local parentCompartment = compartment:find("/parentCompartment")
@@ -557,18 +569,21 @@ function setPrefixFromFromDomainAndRangeAttributes(compartment, oldValue)
 	and (domainAndRange ~= "true" and domainAndRange ~= "!" and domainAndRange ~= " ") 
 	and (localRange ~= "true" and localRange ~= "+") then result = "true" end
 	
-	core.create_missing_compartment(parentCompartment, parentCompartment:find("/compartType"), parentCompartment:find("/compartType/subCompartType[id='hiddenCompartment']"))
+	-- core.create_missing_compartment(parentCompartment, parentCompartment:find("/compartType"), parentCompartment:find("/compartType/subCompartType[id='hiddenCompartment']"))
 	local hiddenCompartment = parentCompartment:find("/subCompartment:has(/compartType[id='hiddenCompartment'])")
-	hiddenCompartment:attr("value", result)
-	core.update_compartment_input_from_value(hiddenCompartment)
-	if hiddenCompartment:find("/component"):is_not_empty() then
-		local cmd = utilities.create_command("D#Command", {info = "Refresh"})
-		hiddenCompartment:find("/component"):link("command", cmd)
-		utilities.execute_cmd_obj(cmd)
+	if hiddenCompartment:attr("value") ~= result then
+		hiddenCompartment:attr("value", result)
+		core.update_compartment_input_from_value(hiddenCompartment)
+		-- if hiddenCompartment:find("/component"):is_not_empty() then
+			-- local cmd = utilities.create_command("D#Command", {info = "Refresh"})
+			-- hiddenCompartment:find("/component"):link("command", cmd)
+			-- utilities.execute_cmd_obj(cmd)
+		-- end
 	end
 end
 
 function setPrefixFromLocalRangeAttributes(compartment, oldValue)
+
 	local parentCompartment = compartment:find("/parentCompartment")
 	local schemaAssertion = parentCompartment:find("/subCompartment:has(/compartType[id='schemaAssertion'])"):attr("value")
 	local domainAndRange = parentCompartment:find("/subCompartment:has(/compartType[id='domainAndRange'])"):attr("value")
@@ -579,15 +594,17 @@ function setPrefixFromLocalRangeAttributes(compartment, oldValue)
 	and (domainAndRange ~= "true" and domainAndRange ~= "!" and domainAndRange ~= " ") 
 	and (localRange ~= "true" and localRange ~= "+") then result = "true" end
 	
-	core.create_missing_compartment(parentCompartment, parentCompartment:find("/compartType"), parentCompartment:find("/compartType/subCompartType[id='hiddenCompartment']"))
+	-- core.create_missing_compartment(parentCompartment, parentCompartment:find("/compartType"), parentCompartment:find("/compartType/subCompartType[id='hiddenCompartment']"))
 	local hiddenCompartment = parentCompartment:find("/subCompartment:has(/compartType[id='hiddenCompartment'])")
 	hiddenCompartment:attr("value", result)
+	
+	hiddenCompartment = hiddenCompartment:first()
 	core.update_compartment_input_from_value(hiddenCompartment)
-	if hiddenCompartment:find("/component"):is_not_empty() then
-		local cmd = utilities.create_command("D#Command", {info = "Refresh"})
-		hiddenCompartment:find("/component"):link("command", cmd)
-		utilities.execute_cmd_obj(cmd)
-	end
+	-- if hiddenCompartment:find("/component"):is_not_empty() then
+		-- local cmd = utilities.create_command("D#Command", {info = "Refresh"})
+		-- hiddenCompartment:find("/component"):link("command", cmd)
+		-- utilities.execute_cmd_obj(cmd)
+	-- end
 end
 
 --ATTRIBUTES
@@ -936,6 +953,7 @@ function onAttributeOpen(form)
 		core.create_missing_compartment(attribute, attribute:find("/compartType"), attribute:find("/compartType/subCompartType[id='schemaAssertion']"))
 		core.create_missing_compartment(attribute, attribute:find("/compartType"), attribute:find("/compartType/subCompartType[id='domainAndRange']"))
 		core.create_missing_compartment(attribute, attribute:find("/compartType"), attribute:find("/compartType/subCompartType[id='localRange']"))
+		core.create_missing_compartment(attribute, attribute:find("/compartType"), attribute:find("/compartType/subCompartType[id='hiddenCompartment']"))
 		local schemaAssertion = attribute:find("/subCompartment:has(/compartType[id='schemaAssertion'])")
 		local domainAndRange = attribute:find("/subCompartment:has(/compartType[id='domainAndRange'])")
 		local localRange = attribute:find("/subCompartment:has(/compartType[id='localRange'])")
@@ -984,6 +1002,7 @@ function onAttributeOpen(form)
 			-- end
 		-- end)
 	-- end
+
 end
 
 function disablePropertiesOnOpen(form)

@@ -25,10 +25,10 @@ function managePlugins()
 					component = {
 						
 						lQuery.create("D#VerticalBox", {
-							id = "VerticalBoxWithListBox"
+							id = "VerticalBoxWithListBoxM"
 							,horizontalAlignment = -1
 							,component = {
-								lQuery.create("D#Label", {caption = "Installed exteensions"})
+								lQuery.create("D#Label", {caption = "Installed extensions"})
 								,lQuery.create("D#ListBox", {
 									id = "ListWithPlugins"
 									,item = collectPlugins()
@@ -196,7 +196,14 @@ function select_plugin_path(start_path)
 end
 
 function get_plugin_info(path)
-  local f = io.open(path.. "\\info.lua", "r")
+  
+  local f
+  if tda.isWeb then
+	f = io.open(path.. "/info.lua", "r")
+  else
+	f = io.open(path.. "\\info.lua", "r")
+  end
+  
   local info = loadstring("return" .. f:read("*a"))()
   f:close()
   return info

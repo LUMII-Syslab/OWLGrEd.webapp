@@ -44,13 +44,13 @@ configurator.make_toolbar(owl_dgr_type)
 local path
 
 if tda.isWeb then 
-	path = tda.FindPath(tda.GetToolPath() .. "\\AllPlugins", "RDB2OWL_AutoCompletion")
+	path = tda.FindPath(tda.GetToolPath() .. "/AllPlugins", "RDB2OWL_AutoCompletion") .. "/"
 else
-	path = tda.GetProjectPath() .. "\\Plugins\\RDB2OWL_AutoCompletion"
+	path = tda.GetProjectPath() .. "\\Plugins\\RDB2OWL_AutoCompletion\\"
 end
 
 --ieladet DBExpr profilu
-local pathContextType = path .. "\\AutoLoad"
+local pathContextType = path .. "AutoLoad"
 completeMetamodelUserFields.loadAutoLoadProfiles(pathContextType)
 
 --complete metamodel

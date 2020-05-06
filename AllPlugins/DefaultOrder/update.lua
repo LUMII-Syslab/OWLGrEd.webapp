@@ -3,13 +3,13 @@ require("lQuery")
 local path
 
 if tda.isWeb then 
-	path = tda.FindPath(tda.GetToolPath() .. "\\AllPlugins", "DefaultOrder")
+	path = tda.FindPath(tda.GetToolPath() .. "\\AllPlugins", "DefaultOrder") .. "/"
 else
-	path = tda.GetProjectPath() .. "\\Plugins\\DefaultOrder"
+	path = tda.GetProjectPath() .. "\\Plugins\\DefaultOrder\\"
 end
 
 local plugin_name = "DefaultOrder"
-local plugin_info_path = path .. "\\info.lua"
+local plugin_info_path = path .. "info.lua"
 local f = io.open(plugin_info_path, "r")
 local info = loadstring("return" .. f:read("*a"))()
 f:close()

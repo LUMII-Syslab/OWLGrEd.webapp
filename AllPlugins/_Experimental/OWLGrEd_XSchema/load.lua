@@ -8,15 +8,15 @@ local path
 local picturePath
 
 if tda.isWeb then 
-	path = tda.FindPath(tda.GetToolPath() .. "\\AllPlugins", "OWLGrEd_XSchema")
-	picturePath = tda.GetToolPath().. "\\web-root\\Pictures"
+	path = tda.FindPath(tda.GetToolPath() .. "/AllPlugins", "OWLGrEd_XSchema") .. "/"
+	picturePath = tda.GetToolPath().. "/web-root/Pictures"
 else
-	path = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_XSchema"
-	picturePath = tda.GetProjectPath() .. "\\Pictures"
+	path = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_XSchema\\"
+	picturePath = tda.GetProjectPath() .. "\\Pictures\\"
 end	
 
-utils.copy(path .. "\\export.BMP",
-           picturePath .. "\\OWLGrEd_XSchema_export.BMP")
+utils.copy(path .. "export.bmp",
+           picturePath .. "OWLGrEd_XSchema_export.bmp")
 		   
 lQuery.model.add_class("OWL_PP#ExportParameter")
 lQuery.model.add_property("OWL_PP#ExportParameter", "pName")
@@ -45,17 +45,17 @@ local view_manager_toolbar_el = lQuery.create("ToolbarElementType", {
 		  toolbarType = toolbarType,
 		  id = "SchemaExportParameters",
 		  caption = "Ontology export preferences",
-		  picture = "OWLGrEd_XSchema_export.BMP",
+		  picture = "OWLGrEd_XSchema_export.bmp",
 		  procedureName = "OWLGrEd_XSchema.schema.exportParametersForm"
 		})	
 -- refresh project diagram toolbar
 configurator.make_toolbar(project_dgr_type)
 
-local pathConfiguration = path .. "\\AutoLoadConfiguration"
+local pathConfiguration = path .. "AutoLoadConfiguration"
 completeMetamodelUserFields.loadAutoLoadContextType(pathConfiguration)
 
 --ieladet profilu
-local pathContextType = path .. "\\AutoLoad"
+local pathContextType = path .. "AutoLoad"
 completeMetamodelUserFields.loadAutoLoadProfiles(pathContextType)
 
 lQuery("CompartType[id='allValuesFrom']"):attr("caption", "Schema Only (no domain assertion)")

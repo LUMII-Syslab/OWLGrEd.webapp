@@ -5,12 +5,12 @@ local plugin_name = "OWLGrEd_Schema"
 local path
 
 if tda.isWeb then 
-	path = tda.FindPath(tda.GetToolPath() .. "\\AllPlugins", "OWLGrEd_Schema")
+	path = tda.FindPath(tda.GetToolPath() .. "/AllPlugins", "OWLGrEd_Schema") .. "/"
 else
-	path = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_Schema"
+	path = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_Schema\\"
 end
 
-local plugin_info_path = path .. "\\info.lua"
+local plugin_info_path = path .. "info.lua"
 local f = io.open(plugin_info_path, "r")
 local info = loadstring("return" .. f:read("*a"))()
 f:close()
@@ -74,10 +74,10 @@ end
 if current_version < 5 then
 	local completeMetamodelUserFields = require "OWLGrEd_UserFields.completeMetamodel"
 	
-	local pathConfiguration = path .. "\\AutoLoadConfiguration"
+	local pathConfiguration = path .. "AutoLoadConfiguration"
 	completeMetamodelUserFields.loadAutoLoadContextType(pathConfiguration)
 	
-	local pathContextType = path .. "\\AutoLoadAttributes"
+	local pathContextType = path .. "AutoLoadAttributes"
 	completeMetamodelUserFields.loadAutoLoadProfiles(pathContextType)
 	
 	lQuery("CompartType[id='allValuesFrom']"):attr("caption", "Schema Only (no domain assertion)")
@@ -188,7 +188,14 @@ if current_version < 7 then
 	local completeMetamodelUserFields = require "OWLGrEd_UserFields.completeMetamodel"
 	local syncProfile = require "OWLGrEd_UserFields.syncProfile"
 	local profileMechanism = require "OWLGrEd_UserFields.profileMechanism"
-	local pathContextType = path .. "\\AutoLoad\\Schema.txt"
+
+	local pathContextType
+
+	if tda.isWeb then 
+		pathContextType = path .. "AutoLoad/Schema.txt"
+	else
+		pathContextType = path .. "AutoLoad\\Schema.txt"
+	end
 	
 	completeMetamodelUserFields.loadAutoLoadProfile(pathContextType)
 	
@@ -489,11 +496,52 @@ AnnotationAssertion([/../schemaAssertion == 'true'][$getClassName(/start) == 'Th
 end
 
 if current_version < 11 then
+	local configurator = require("configurator.configurator")
 	lQuery("ToolbarElementType[id=SchemaExportParameters]"):delete()
 	-- refresh project diagram
 	configurator.make_toolbar(lQuery("GraphDiagramType[id=projectDiagram]"))
 	configurator.make_toolbar(lQuery("GraphDiagramType[id=OWL]"))
 	lQuery("PopUpElementType[id='Export Configuration']"):delete()
+	
+	local checkBox = lQuery("OWL_PP#ExportParameterRow[type = 'checkBox']")
+	local radioButton = lQuery("OWL_PP#ExportParameterRow[type = 'radioButton']")
+
+	local tab = lQuery.create("OWL_PP#ExportParameterTab", {caption = "Schema", source = "OWLGrEd_Schema"})
+
+	local schemaExportType = lQuery.create("OWL_PP#ExportParameterGroupBox", {caption = "Schema export type", topMargin = 0, leftMargin = 0}):link("tab", tab)
+	local schemaExtension = lQuery.create("OWL_PP#ExportParameter", {pName = 'schemaExtension', pValue = 'Weak schema closure', caption = "", procedure = "lua.OWLGrEd_Schema.schema.saveRadioButtonParameter()", topMargin = 5})
+	:link("groupBox",schemaExportType)
+	:link("row",radioButton)
+
+		lQuery.create("OWL_PP#ExportParameterValueOption", {value = "Weak schema closure"}):link("parameter", schemaExtension)
+		lQuery.create("OWL_PP#ExportParameterValueOption", {value = "Strict schema closure"}):link("parameter", schemaExtension)
+		lQuery.create("OWL_PP#ExportParameterValueOption", {value = "Standard (non-shema) ontology only"}):link("parameter", schemaExtension)
+
+	lQuery.create("OWL_PP#ExportParameter", {pName = 'computePropertyRangeClosure', pValue = 'true', caption = "Compute property range closure", procedure = "lua.OWLGrEd_Schema.schema.saveCheckBoxParameter()", topMargin = 10})
+	:link("groupBox",schemaExportType)
+	:link("row",checkBox)
+
+	lQuery.create("OWL_PP#ExportParameter", {pName = 'includeSchemaAssertionsInAnnotationForm', pValue = 'true', caption = "Include schema assertions in annotation form", procedure = "lua.OWLGrEd_Schema.schema.saveCheckBoxParameter()", topMargin = 10})
+	:link("groupBox",schemaExportType)
+	:link("row",checkBox)
+
+
+	local schemaClosureExtensions = lQuery.create("OWL_PP#ExportParameterGroupBox", {caption = "Schema closure extensions", topMargin = 10, leftMargin = 0}):link("tab", tab)
+	lQuery.create("OWL_PP#ExportParameter", {pName = 'explicitSubProperties', pValue = 'true', caption = "Explicit sub-properties", procedure = "lua.OWLGrEd_Schema.schema.saveCheckBoxParameter()", topMargin = 5, leftMargin = 0})
+	:link("groupBox",schemaClosureExtensions)
+	:link("row",checkBox)
+
+	lQuery.create("OWL_PP#ExportParameter", {pName = 'enableInversePropertyResoning', pValue = 'false', caption = "Enable inverse property reasoning", procedure = "lua.OWLGrEd_Schema.schema.saveCheckBoxParameter()", leftMargin = 30})
+	:link("groupBox",schemaClosureExtensions)
+	:link("row",checkBox)
+
+	lQuery.create("OWL_PP#ExportParameter", {pName = 'extendByInitialChainProperties', pValue = 'false', caption = "Extend by initial chain properties", procedure = "lua.OWLGrEd_Schema.schema.saveCheckBoxParameter()", leftMargin = 30})
+	:link("groupBox",schemaClosureExtensions)
+	:link("row",checkBox)
+
+	lQuery.create("OWL_PP#ExportParameter", {pName = 'existentialAssertions', pValue = 'false', caption = "Existential assertions (some values from, min cardinality, has values ..)", procedure = "lua.OWLGrEd_Schema.schema.saveCheckBoxParameter()", topMargin = 10, leftMargin = 0})
+	:link("groupBox",schemaClosureExtensions)
+	:link("row",checkBox)
 end
 
 if current_version < 12 then

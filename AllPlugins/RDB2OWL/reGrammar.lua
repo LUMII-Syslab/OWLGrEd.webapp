@@ -2026,11 +2026,11 @@ function generateDatabaseInstances()
 					local path
 
 					if tda.isWeb then 
-						path = tda.FindPath(tda.GetToolPath() .. "\\AllPlugins", "RDB2OWL")
+						path = tda.FindPath(tda.GetToolPath() .. "/AllPlugins", "RDB2OWL") .. "/"
 					else
-						path = tda.GetProjectPath() .. "\\Plugins\\RDB2OWL"
+						path = tda.GetProjectPath() .. "\\Plugins\\RDB2OWL\\"
 					end
-					assert(loadfile(path .. '\\generate_and_run_load_db_schema.lua'))(k["dbname"], tda.GetProjectPath(), "RR#")
+					assert(loadfile(path .. 'generate_and_run_load_db_schema.lua'))(k["dbname"], tda.GetProjectPath(), "RR#")
 				end
 			end
 			--lQuery.create("RR#Database", {dbName=data["dbname"], jdbcDriver=data["jdbc_driver"], connection=data["connection_string"], schema=data["schema"], publicTablePrefix=data["public_table_prefix"], isDefaultDB=data["default"], dbAlias=data["alias"]})

@@ -42,17 +42,17 @@ containerNode:link("/target_type", elem_type)
 local path
 
 if tda.isWeb then 
-	path = tda.FindPath(tda.GetToolPath() .. "\\AllPlugins", "OWLGrEd_Container")
+	path = tda.FindPath(tda.GetToolPath() .. "/AllPlugins", "OWLGrEd_Container") .. "/"
 else
-	path = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_Container"
+	path = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_Container\\"
 end
 
 --ieladet konfiguraciju
-local pathConfiguration = path .. "\\AutoLoadConfiguration"
+local pathConfiguration = path .. "AutoLoadConfiguration"
 completeMetamodelUserFields.loadAutoLoadContextType(pathConfiguration)
 
 -- ieladet profilu
-local pathContextType = path .. "\\AutoLoad"
+local pathContextType = path .. "AutoLoad"
 completeMetamodelUserFields.loadAutoLoadProfiles(pathContextType)
 
 local containerNameInvisibleStyle = lQuery.create("CompartStyle", {

@@ -12,6 +12,7 @@ lQuery("PopUpElementType[id='TrasformToSuperClass']"):delete()
 lQuery("PopUpElementType[id='ForkToSuperClass']"):delete()
 lQuery("PopUpElementType[id='AttributeToClassAttribute']"):delete()
 lQuery("PopUpElementType[id='ConnectAttributeToDataType']"):delete()
+lQuery("PopUpElementType[id='EquivalentClassAsText']"):delete()
 
 return true
 -- return false, error_string

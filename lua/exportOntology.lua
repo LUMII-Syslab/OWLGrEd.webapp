@@ -487,7 +487,7 @@ function get_current_uri()
 	-- else
 		-- path = "/compartment:has(/compartType[id = 'Prefix'])"
 	-- end
-	local res = s:find(path):attr_e("value") --.. "#"
+	local res = t_to_p.find_diagram_source(diagram:find("/parent")):find("/compartment:has(/compartType[id = 'Prefix'])"):attr_e("value") --.. "#"
 	if string.sub(res, string.len(res)) == "#" then return res end
 	return res .. "#"
 end

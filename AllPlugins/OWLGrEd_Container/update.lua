@@ -4,12 +4,12 @@ local plugin_name = "OWLGrEd_Container"
 local path
 
 if tda.isWeb then 
-	path = tda.FindPath(tda.GetToolPath() .. "\\AllPlugins", "OWLGrEd_Container")
+	path = tda.FindPath(tda.GetToolPath() .. "/AllPlugins", "OWLGrEd_Container") .. "/"
 else
-	path = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_Container"
+	path = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_Container\\"
 end
 
-local plugin_info_path = path .. "\\info.lua"
+local plugin_info_path = path .. "info.lua"
 local f = io.open(plugin_info_path, "r")
 local info = loadstring("return" .. f:read("*a"))()
 f:close()

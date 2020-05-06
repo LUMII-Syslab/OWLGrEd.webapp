@@ -6,12 +6,12 @@ local plugin_name = "RefactoringServices"
 local path
 
 if tda.isWeb then 
-	path = tda.FindPath(tda.GetToolPath() .. "\\AllPlugins", "RefactoringServices")
+	path = tda.FindPath(tda.GetToolPath() .. "/AllPlugins", "RefactoringServices") .. "/"
 else
-	path = tda.GetProjectPath() .. "\\Plugins\\RefactoringServices"
+	path = tda.GetProjectPath() .. "\\Plugins\\RefactoringServices\\"
 end
 
-local plugin_info_path = path .. "\\info.lua"
+local plugin_info_path = path .. "info.lua"
 local f = io.open(plugin_info_path, "r")
 local info = loadstring("return" .. f:read("*a"))()
 f:close()
@@ -38,6 +38,10 @@ if current_version < "0.5" and current_version < plugin_version then
 	lQuery("ElemType[id='Class']/popUpDiagramType"):link("popUpElementType",lQuery.create("PopUpElementType", {id = "AttributeToAttributeLink", caption = "Attribute To DataType link", nr = 20, procedureName = "RefactoringServices.refactoringServices.attributeToAttributeLink", visibility = true}))
 	lQuery("ElemType[id='Attribute']/popUpDiagramType"):link("popUpElementType",lQuery.create("PopUpElementType", {id = "AttributeToClassAttribute", caption = "Attribute as text", nr = 21, procedureName = "RefactoringServices.refactoringServices.attributeToClassAttribute", visibility = true}))
 	lQuery("ElemType[id='Class']/popUpDiagramType"):link("popUpElementType",lQuery.create("PopUpElementType", {id = "ConnectAttributeToDataType", caption = "Connect Attributes to DataTypes", nr = 22, procedureName = "RefactoringServices.refactoringServices.connectAttributeToDataType", visibility = true}))
+end
+if current_version < "0.6" and current_version < plugin_version then
+
+	lQuery("ElemType[id='Class']/popUpDiagramType"):link("popUpElementType",lQuery.create("PopUpElementType", {id = "EquivalentClassAsText", caption = "EquivalentClass as text", nr = 23, procedureName = "RefactoringServices.refactoringServices.equivalentClassAsText", visibility = true}))
 end
 			
 return true

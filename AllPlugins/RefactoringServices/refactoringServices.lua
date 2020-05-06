@@ -687,6 +687,26 @@ function cteateSuperClass(class, role, classInvRole)
 	-- utilities.execute_cmd("OkCmd", {graphDiagram = diagram})	
 end
 
+function cteateEquivalentClass(class, className)
+
+	local ASFictitiousEquivalentClasses = class:find("/compartment:has(/compartType[id='ASFictitiousEquivalentClasses'])")
+	local EquivalentClasses = core.add_compartment(ASFictitiousEquivalentClasses:find("/compartType/subCompartType[id='EquivalentClasses']"), ASFictitiousEquivalentClasses, "")
+	local ASFictitiousEquivalentClass = core.add_compartment(EquivalentClasses:find("/compartType/subCompartType[id='ASFictitiousEquivalentClass']"), EquivalentClasses, "")
+	local EquivalentClass = core.add_compartment(ASFictitiousEquivalentClass:find("/compartType/subCompartType[id='EquivalentClass']"), ASFictitiousEquivalentClass, "")
+
+	local expression = core.add_compartment(EquivalentClass:find("/compartType/subCompartType[id='Expression']"), EquivalentClass, className)
+	local input = core.build_compartment_input_from_value(className, EquivalentClass:find("/compartType/subCompartType[id='Expression']"), expression)
+	expression:attr("input", input)
+	
+	core.make_compart_value_from_sub_comparts(EquivalentClass)
+    core.make_compart_value_from_sub_comparts(ASFictitiousEquivalentClass)
+    core.make_compart_value_from_sub_comparts(EquivalentClasses)
+    core.make_compart_value_from_sub_comparts(ASFictitiousEquivalentClasses)
+	core.set_parent_value(ASFictitiousEquivalentClasses)
+	
+	
+end
+
 function forkToSuperClass()
 	local class = utilities.active_elements()
 	local subClasses = class:find("/eEnd/start/eEnd/start")
@@ -704,4 +724,93 @@ function forkToSuperClass()
 		local diagram = class:find("/graphDiagram")
 		utilities.execute_cmd("OkCmd", {graphDiagram = diagram})
 	end
+end
+
+function equivalentClassAsText()
+	local class = utilities.active_elements()
+	local equivalentClass = class:find("/eStart:has(/elemType[id='EquivalentClass'])")
+	equivalentClass:each(function(eqClass)
+		local clazz = eqClass:find("/end")
+		local className =  class:find("/compartment:has(/compartType[id='Name'])"):attr("value")
+		if className == nil or className == "" then
+			className = clazz:find("/compartment/subCompartment:has(/compartType[id='EquivalentClasses'])/subCompartment/subCompartment"):attr("value")
+		end
+		if className ~= nil and className ~= "" then
+			cteateEquivalentClass(clazz, className, "")
+			copyAttributes(class, clazz)
+			eqClass:delete()
+			local diagram = class:find("/graphDiagram")
+			copyLink(class, clazz, diagram)
+			utilities.execute_cmd("OkCmd", {graphDiagram = diagram})
+		end
+	end)
+	
+	local equivalentClass = class:find("/eEnd:has(/elemType[id='EquivalentClass'])")
+	equivalentClass:each(function(eqClass)
+		local clazz = eqClass:find("/start")
+		local className =  class:find("/compartment:has(/compartType[id='Name'])"):attr("value")
+		if className == nil or className == "" then
+			className = clazz:find("/compartment/subCompartment:has(/compartType[id='EquivalentClasses'])/subCompartment/subCompartment"):attr("value")
+		end
+		if className ~= nil and className ~= "" then
+			cteateEquivalentClass(clazz, className, "")
+			copyAttributes(class, clazz)
+			eqClass:delete()
+			local diagram = class:find("/graphDiagram")
+			copyLink(class, clazz, diagram)
+			utilities.execute_cmd("OkCmd", {graphDiagram = diagram})
+		end
+	end)
+end
+
+function copyAttributes(classFrom, classTo)
+	classFrom:find("/compartment/subCompartment:has(/compartType[id='Attributes'])"):each(function(attribute)
+   
+		local new_compart = lQuery.create("Compartment"):copy_attrs_from(attribute)
+									:link("parentCompartment", classTo:find("/compartment:has(/compartType[id='ASFictitiousAttributes'])"))
+									:link("compartType", attribute:find("/compartType"))
+		copySubCompartments(attribute, new_compart)
+		local input = core.build_compartment_input_from_value(new_compart:attr("value"), new_compart:find("/compartType"), new_compart)
+		new_compart:attr("input", input)
+	end)
+	core.make_compart_value_from_sub_comparts(classTo:find("/compartment:has(/compartType[id='ASFictitiousAttributes'])"))
+	core.set_parent_value(classTo:find("/compartment:has(/compartType[id='ASFictitiousAttributes'])"))
+	local input = core.build_compartment_input_from_value(classTo:find("/compartment:has(/compartType[id='ASFictitiousAttributes'])"):attr("value"), classTo:find("/compartType/subCompartType[id='ASFictitiousAttributes']"), classTo:find("/compartment:has(/compartType[id='ASFictitiousAttributes'])"))
+	classTo:find("/compartment:has(/compartType[id='ASFictitiousAttributes'])"):attr("input", input)
+end
+
+function copyCompartments(linkFrom, linkTo)
+	linkFrom:find("/compartment"):each(function(compartment)
+		local new_compart = lQuery.create("Compartment"):copy_attrs_from(compartment)
+									:link("element", linkTo)
+									:link("compartType", compartment:find("/compartType"))
+									:link("compartStyle", compartment:find("/compartStyle"))
+		copySubCompartments(compartment, new_compart)
+	end)
+end
+
+function copySubCompartments(compartmentFrom, compartmentTo)
+	compartmentFrom:find("/subCompartment"):each(function(compartment)   
+		local new_compart = lQuery.create("Compartment"):copy_attrs_from(compartment)
+									:link("parentCompartment", compartmentTo)
+									:link("compartType", compartment:find("/compartType"))
+									:link("compartStyle", compartment:find("/compartStyle"))
+		copySubCompartments(compartment, new_compart)
+		local input = core.build_compartment_input_from_value(new_compart:attr("value"), new_compart:find("/compartType"), new_compart)
+		new_compart:attr("input", input)
+	end)
+end
+
+function copyLink(classFrom, classTo, diagram)
+	classFrom:find("/eEnd:has(/elemType[id != 'EquivalentClass'])"):each(function(link)
+		local newLink = core.add_edge(link:find("/elemType"), classTo, link:find("/start"), diagram)
+				:link("elemStyle", link:find("/elemStyle:first"))
+		copyCompartments(link, newLink)
+
+	end)
+	classFrom:find("/eStart:has(/elemType[id != 'EquivalentClass'])"):each(function(link)
+		local newLink = core.add_edge(link:find("/elemType"), classTo, link:find("/end"), diagram)
+				:link("elemStyle", link:find("/elemStyle:first"))
+		copyCompartments(link, newLink)
+	end)
 end

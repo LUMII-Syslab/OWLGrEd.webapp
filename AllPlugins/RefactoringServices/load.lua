@@ -22,5 +22,8 @@ lQuery("ElemType[id='Class']/popUpDiagramType"):link("popUpElementType",lQuery.c
 lQuery("ElemType[id='Class']/popUpDiagramType"):link("popUpElementType",lQuery.create("PopUpElementType", {id = "ForkToSuperClass", caption = "SuperClass as text", nr = 19, procedureName = "RefactoringServices.refactoringServices.forkToSuperClass", visibility = true}))
 lQuery("ElemType[id='Attribute']/popUpDiagramType"):link("popUpElementType",lQuery.create("PopUpElementType", {id = "AttributeToClassAttribute", caption = "Attribute as text", nr = 18, procedureName = "RefactoringServices.refactoringServices.attributeToClassAttribute", visibility = true}))
 
+
+lQuery("ElemType[id='Class']/popUpDiagramType"):link("popUpElementType",lQuery.create("PopUpElementType", {id = "EquivalentClassAsText", caption = "EquivalentClass as text", nr = 23, procedureName = "RefactoringServices.refactoringServices.equivalentClassAsText", visibility = true}))
+
 return true
 -- return false, error_string

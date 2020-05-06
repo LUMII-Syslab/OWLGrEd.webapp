@@ -642,7 +642,13 @@ function verbalize_elements_to_table()
 	local ontology_language = ontology_diagram:find("/parent/compartment:has(/compartType[id=RenderingLanguage])"):attr("value")
 
 	local ontology_text = OWL_specific.ontology_functional_form(ontology_diagram) --save the ontology to file; used for Class verbalization
-	local path = tda.GetRuntimePath().."\\temp_for_class_verbalization.owl"
+	local path
+
+	if tda.isWeb then 
+		path = tda.GetRuntimePath().."/temp_for_class_verbalization.owl"
+	else
+		path = tda.GetRuntimePath().."\\temp_for_class_verbalization.owl"
+	end
 	local combinedString = path.."\nFunctional\n"..ontology_text
 	java.call_static_class_method("OntologySaver", "saveOntologyToFile", combinedString)
 	local referencing_axioms = java.call_static_class_method("AxiomCollector", "collectAxiomsForEntities", path) --pass ontology file to Java, get a table of axioms somehow encoded in a string

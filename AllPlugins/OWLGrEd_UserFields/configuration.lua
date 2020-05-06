@@ -77,7 +77,7 @@ function configurationProperty()
         horizontalAlignment = 1
 		,id = "closeForm"
         ,component = {
-		  lQuery.create("D#VerticalBox", {id = "buttons"}) 
+		  lQuery.create("D#VerticalBox", {id = "buttonsConf"}) 
 		  ,lQuery.create("D#VerticalBox", {
 			id = "closeButton"
 			,horizontalAlignment = 1
@@ -149,7 +149,7 @@ function yesLoadForm()
 	
 	local path
 	if tda.isWeb then
-		path = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields\\user\\AutoLoadConfiguration\\configuration"-- ???
+		path = tda.GetProjectPath() .. "/Plugins/OWLGrEd_UserFields/user/AutoLoadConfiguration/configuration"-- ???
 	else
 		path = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields\\user\\AutoLoadConfiguration\\configuration"
 	end
@@ -256,7 +256,12 @@ function saveConfiguration()
 				
 		local folder = tda.BrowseForFolder(caption, start_folder)
 		if folder ~= "" then
-			local file_path = folder .. "\\configuration"  .. deteTime .. ".txt"
+			local file_path
+			if tda.isWeb then
+				file_path = folder .. "/configuration"  .. deteTime .. ".txt"
+			else
+				file_path = folder .. "\\configuration"  .. deteTime .. ".txt"
+			end
 			serialize.save_to_file(objects_to_export, export_spec, file_path)
 		else --print("Export was canceled") 
 		end
@@ -306,7 +311,7 @@ function manageTagType()
         horizontalAlignment = 1
 		,id = "closeForm"
         ,component = {
-		  lQuery.create("D#VerticalBox", {id = "buttons"}) 
+		  lQuery.create("D#VerticalBox", {id = "buttonsTag"}) 
 		  ,lQuery.create("D#VerticalBox", {
 			id = "closeButton"
 			,horizontalAlignment = 1
@@ -395,7 +400,7 @@ function addTagType()
         horizontalAlignment = 1
 		,id = "closeForm"
         ,component = {
-		  lQuery.create("D#VerticalBox", {id = "buttons"}) 
+		  lQuery.create("D#VerticalBox", {id = "buttonsAddTag"}) 
 		  ,lQuery.create("D#HorizontalBox", {
 			id = "closeButton"
 			,horizontalAlignment = 1
@@ -405,7 +410,6 @@ function addTagType()
     }
   })
   dialog_utilities.show_form(form)
-	
 	--createChildNode("treeConfiguration")
 end
 
@@ -736,7 +740,7 @@ function generateElemTypeTree()
 			horizontalAlignment = 1
 			,id = "closeForm"
 			,component = {
-			  lQuery.create("D#VerticalBox", {id = "buttons"}) 
+			  lQuery.create("D#VerticalBox", {id = "buttonsElemType"}) 
 			  ,lQuery.create("D#VerticalBox", {
 				id = "closeButton"
 				,horizontalAlignment = 1

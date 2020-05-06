@@ -140,19 +140,19 @@ function onOffAutoCompletion()
 	local path
 
 	if tda.isWeb then 
-		path = tda.FindPath(tda.GetToolPath() .. "\\AllPlugins", "RDB2OWL")
+		path = tda.FindPath(tda.GetToolPath() .. "/AllPlugins", "RDB2OWL") .. "/"
 	else
-		path = tda.GetProjectPath() .. "\\Plugins\\RDB2OWL"
+		path = tda.GetProjectPath() .. "\\Plugins\\RDB2OWL\\"
 	end
 	
-	local f = assert(io.open(path .. "\\config.txt", "r"))
+	local f = assert(io.open(path .. "config.txt", "r"))
     local t = f:read("*a")
 	f:close()
 	local pat = lpeg.P("useautocompletion") * lpeg.S(" \n\t") ^ 0 * lpeg.P("=") * lpeg.S(" \n\t") ^ 0 * lpeg.C(lpeg.R("09"))
 	local pat = anywhere(pat)
 	local useautocompletion = lpeg.match(pat, t)
 	
-	local f = assert(io.open(path .. "\\config.txt", "w"))
+	local f = assert(io.open(path .. "config.txt", "w"))
 	if useautocompletion == "1" then 
 		addRemoveAutoCompletion("0")
 		f:write("useautocompletion = 0")
@@ -167,12 +167,12 @@ function readUseAutoCompletion()
 	local path
 
 	if tda.isWeb then 
-		path = tda.FindPath(tda.GetToolPath() .. "\\AllPlugins", "RDB2OWL")
+		path = tda.FindPath(tda.GetToolPath() .. "/AllPlugins", "RDB2OWL") .. "/"
 	else
-		path = tda.GetProjectPath() .. "\\Plugins\\RDB2OWL"
+		path = tda.GetProjectPath() .. "\\Plugins\\RDB2OWL\\"
 	end
 	
-	local f = assert(io.open(path .. "\\config.txt", "r"))
+	local f = assert(io.open(path .. "config.txt", "r"))
     local t = f:read("*a")
 	f:close()
 	local pat = lpeg.P("useautocompletion") * lpeg.S(" \n\t") ^ 0 * lpeg.P("=") * lpeg.S(" \n\t") ^ 0 * lpeg.C(lpeg.R("09"))

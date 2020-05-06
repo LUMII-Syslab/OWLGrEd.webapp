@@ -9,21 +9,21 @@ local path
 local picturePath
 
 if tda.isWeb then 
-	path = tda.FindPath(tda.GetToolPath() .. "\\AllPlugins", "OWLGrEd_UserFields")
-	picturePath = tda.GetToolPath().. "\\web-root\\Pictures"
+	path = tda.FindPath(tda.GetToolPath() .. "/AllPlugins", "OWLGrEd_UserFields") .. "/"
+	picturePath = tda.GetToolPath().. "/web-root/Pictures/"
 else
-	path = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields"
-	picturePath = tda.GetProjectPath() .. "\\Pictures"
+	path = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields\\"
+	picturePath = tda.GetProjectPath() .. "\\Pictures\\"
 end
 
-utils.copy(path .. "\\aa.BMP",
-           picturePath .. "\\OWLGrEd_UserFields_aa.BMP")
+utils.copy(path .. "aa.bmp",
+           picturePath .. "OWLGrEd_UserFields_aa.bmp")
 		   
-utils.copy(path ..  .. "\\aaView.BMP",
-           picturePath .. "\\OWLGrEd_UserFields_aaView.BMP")
+utils.copy(path ..  .. "aaView.bmp",
+           picturePath .. "OWLGrEd_UserFields_aaView.bmp")
 
-utils.copy(path ..  .. "\\aaStyles.BMP",
-            picturePath .. "\\OWLGrEd_UserFields_aaStyles.BMP")
+utils.copy(path ..  .. "aaStyles.bmp",
+            picturePath .. "OWLGrEd_UserFields_aaStyles.bmp")
 
 			local project_dgr_type = lQuery("GraphDiagramType[id=projectDiagram]")
 -- local owl_dgr_type = lQuery("GraphDiagramType[id=OWL]")-----------------------------------------------------

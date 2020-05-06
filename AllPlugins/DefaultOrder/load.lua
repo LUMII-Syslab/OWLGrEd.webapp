@@ -9,13 +9,13 @@ local d = require("dialog_utilities")
 local path
 
 if tda.isWeb then 
-	path = tda.FindPath(tda.GetToolPath() .. "\\AllPlugins", "DefaultOrder")
+	path = tda.FindPath(tda.GetToolPath() .. "/AllPlugins", "DefaultOrder") .."/"
 else
-	path = tda.GetProjectPath() .. "\\Plugins\\DefaultOrder"
+	path = tda.GetProjectPath() .. "\\Plugins\\DefaultOrder\\"
 end
 
 --ieladet OBIS profilu
-local pathContextType = path .. "\\AutoLoad"
+local pathContextType = path .. "AutoLoad"
 completeMetamodelUserFields.loadAutoLoadProfiles(pathContextType)
 
 

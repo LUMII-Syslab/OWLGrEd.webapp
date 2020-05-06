@@ -10,14 +10,14 @@ local plugin_name = "OWLGrEd_UserFields"
 
 local path
 if tda.isWeb then
-	path = tda.FindPath(tda.GetToolPath() .. "\\AllPlugins", plugin_name)
+	path = tda.FindPath(tda.GetToolPath() .. "/AllPlugins", plugin_name).."/"
 else
-	path = tda.GetProjectPath() .. "\\Plugins\\".. plugin_name 
+	path = tda.GetProjectPath() .. "\\Plugins\\".. plugin_name .. "\\"
 end
 
-local plugin_info_path = path .. "\\info.lua"
+local plugin_info_path = path .. "info.lua"
 local f = io.open(plugin_info_path, "r")
-local info = loadstring("return" .. f:read("*a"))()
+local info = loadstring("return" .. f:read("*all"))()
 f:close()
 local plugin_version = info.version
 local current_version = lQuery("Plugin[id='".. plugin_name .."']"):attr("version")
@@ -90,26 +90,26 @@ lQuery.model.add_composition("AA#CustomStyleSetting", "customStyleSetting", "vie
 lQuery.model.add_link("ElementStyleSetting", "dependingElementStyleSetting", "dependsOnCompartType", "CompartType")
 lQuery.model.add_link("CompartmentStyleSetting", "dependingCompartmentStyleSetting", "dependsOnCompartType", "CompartType")
 
-utils.copy(tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields\\aa.BMP",
-           tda.GetProjectPath() .. "\\Pictures\\OWLGrEd_UserFields_aa.BMP")
+utils.copy(tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields\\aa.bmp",
+           tda.GetProjectPath() .. "\\Pictures\\OWLGrEd_UserFields_aa.bmp")
 		   
-utils.copy(tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields\\aaView.BMP",
-           tda.GetProjectPath() .. "\\Pictures\\OWLGrEd_UserFields_aaView.BMP")
+utils.copy(tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields\\aaView.bmp",
+           tda.GetProjectPath() .. "\\Pictures\\OWLGrEd_UserFields_aaView.bmp")
 
-utils.copy(tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields\\aaStyles.BMP",
-           tda.GetProjectPath() .. "\\Pictures\\OWLGrEd_UserFields_aaStyles.BMP")
+utils.copy(tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields\\aaStyles.bmp",
+           tda.GetProjectPath() .. "\\Pictures\\OWLGrEd_UserFields_aaStyles.bmp")
 		   
-utils.copy(tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields\\aaViewHorizontal.BMP",
-           tda.GetProjectPath() .. "\\Pictures\\OWLGrEd_UserFields_aaViewHorizontal.BMP")
+utils.copy(tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields\\aaViewHorizontal.bmp",
+           tda.GetProjectPath() .. "\\Pictures\\OWLGrEd_UserFields_aaViewHorizontal.bmp")
 		   
-utils.copy(tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields\\aaViewHorizontalActivated.BMP",
-           tda.GetProjectPath() .. "\\Pictures\\OWLGrEd_UserFields_aaViewHorizontalActivated.BMP")
+utils.copy(tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields\\aaViewHorizontalActivated.bmp",
+           tda.GetProjectPath() .. "\\Pictures\\OWLGrEd_UserFields_aaViewHorizontalActivated.bmp")
 		   
-utils.copy(tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields\\aaViewVertical.BMP",
-           tda.GetProjectPath() .. "\\Pictures\\OWLGrEd_UserFields_aaViewVertical.BMP")
+utils.copy(tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields\\aaViewVertical.bmp",
+           tda.GetProjectPath() .. "\\Pictures\\OWLGrEd_UserFields_aaViewVertical.bmp")
 		   
-utils.copy(tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields\\aaViewVerticalActivated.BMP",
-           tda.GetProjectPath() .. "\\Pictures\\OWLGrEd_UserFields_aaViewVerticalActivated.BMP")
+utils.copy(tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields\\aaViewVerticalActivated.bmp",
+           tda.GetProjectPath() .. "\\Pictures\\OWLGrEd_UserFields_aaViewVerticalActivated.bmp")
 
 lQuery("AA#View[showInPalette='true']"):each(function(view)
 		lQuery("ToolbarElementType[caption=" .. view:attr("name") .. "]"):delete()

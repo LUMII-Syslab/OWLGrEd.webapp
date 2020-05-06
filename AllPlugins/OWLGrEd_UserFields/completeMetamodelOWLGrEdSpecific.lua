@@ -13,30 +13,30 @@ function completeMetamodel()
 	local picturePath
 
 	if tda.isWeb then 
-		path = tda.FindPath(tda.GetToolPath() .. "\\AllPlugins", "OWLGrEd_UserFields")
-		picturePath = tda.GetToolPath().. "\\web-root\\Pictures"
+		path = tda.FindPath(tda.GetToolPath() .. "/AllPlugins", "OWLGrEd_UserFields") .. "/"
+		picturePath = tda.GetToolPath().. "/web-root/Pictures/"
 	else
-		path = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields"
-		picturePath = tda.GetProjectPath() .. "\\Pictures"
+		path = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields\\"
+		picturePath = tda.GetProjectPath() .. "\\Pictures\\"
 	end
 	
-	utils.copy(path .. "\\aaViewHorizontal.BMP",-------------------
-           picturePath .. "\\OWLGrEd_UserFields_aaViewHorizontal.BMP")-------------------
+	utils.copy(path .. "aaViewHorizontal.bmp",-------------------
+           picturePath .. "OWLGrEd_UserFields_aaViewHorizontal.bmp")-------------------
 		   
-	utils.copy(path .. "\\aaViewHorizontalActivated.BMP",----------
-			   picturePath .. "\\OWLGrEd_UserFields_aaViewHorizontalActivated.BMP")----------
+	utils.copy(path .. "aaViewHorizontalActivated.bmp",----------
+			   picturePath .. "OWLGrEd_UserFields_aaViewHorizontalActivated.bmp")----------
 			   
-	utils.copy(path .. "\\aaViewVertical.BMP",---------------------
-			   picturePath .. "\\OWLGrEd_UserFields_aaViewVertical.BMP")---------------------
+	utils.copy(path .. "aaViewVertical.bmp",---------------------
+			   picturePath .. "OWLGrEd_UserFields_aaViewVertical.bmp")---------------------
 			   
-	utils.copy(path .. "\\aaViewVerticalActivated.BMP",------------
-			   picturePath .. "\\OWLGrEd_UserFields_aaViewVerticalActivated.BMP")------------
+	utils.copy(path .. "aaViewVerticalActivated.bmp",------------
+			   picturePath .. "OWLGrEd_UserFields_aaViewVerticalActivated.bmp")------------
 			   
-	utils.copy(path .. "\\aaHideAnnotationsActivated.BMP",---------
-			   picturePath .. "\\OWLGrEd_UserFields_aaHideAnnotationsActivated.BMP")---------
+	utils.copy(path .. "aaHideAnnotationsActivated.bmp",---------
+			   picturePath .. "OWLGrEd_UserFields_aaHideAnnotationsActivated.bmp")---------
 			   
-	utils.copy(path .. "\\aaHideAnnotations.BMP",------------------
-           picturePath .. "\\OWLGrEd_UserFields_aaHideAnnotations.BMP")------------------
+	utils.copy(path .. "aaHideAnnotations.bmp",------------------
+           picturePath .. "OWLGrEd_UserFields_aaHideAnnotations.bmp")------------------
 	
 	local owl_dgr_type = lQuery("GraphDiagramType[id=OWL]")
 	

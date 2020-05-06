@@ -621,9 +621,9 @@ function viewsInDiagram()
   
   local path
   if tda.isWeb then
-		path = tda.FindPath(tda.GetToolPath() .. "\\AllPlugins", "OWLGrEd_UserFields")
+		path = tda.FindPath(tda.GetToolPath() .. "/AllPlugins", "OWLGrEd_UserFields").. "/"
   else
-		path = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields"
+		path = tda.GetProjectPath() .. "\\Plugins\\OWLGrEd_UserFields\\"
   end
 
   local form = lQuery.create("D#Form", {
@@ -654,11 +654,11 @@ function viewsInDiagram()
 						,lQuery.create("D#VerticalBox",{
 							component = {
 								lQuery.create("D#ImageButton",{
-									fileName = path .. "\\up.BMP"
+									fileName = path .. "up.bmp"
 									,eventHandler = utilities.d_handler("Click", "lua_engine", "lua.OWLGrEd_UserFields.styleMechanism.upView()")
 								})
 								,lQuery.create("D#ImageButton",{
-									fileName = path .. "\\down.BMP"
+									fileName = path .. "down.bmp"
 									,eventHandler = utilities.d_handler("Click", "lua_engine", "lua.OWLGrEd_UserFields.styleMechanism.downView()")
 								})
 							}
@@ -1713,7 +1713,7 @@ function generateTree()
         horizontalAlignment = 1
 		,id = "closeForm"
         ,component = {
-		  lQuery.create("D#VerticalBox", {id = "buttons"}) 
+		  lQuery.create("D#VerticalBox", {id = "buttonsView"}) 
 		  ,lQuery.create("D#VerticalBox", {
 			id = "closeButton"
 			,horizontalAlignment = 1
