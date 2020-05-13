@@ -64,7 +64,7 @@ end
 function load_or_reopen_dialog()
 	local ontology_loaded = owl_protege.select_and_load_ontology(tda.GetRuntimePath().."\\..\\sample ontologies")
 	if not ontology_loaded then
-		open()
+	--	open()
 	end
 end
 
